@@ -1,0 +1,89 @@
+DB Name: 
+
+Mongo, SQL, other?
+
+Tables (needs):
+================
+- Users -
+-- (Id, FirstName, LastName, Username, Email, Phone, Password, Other/Settings, dateJoined, 
+[TopicIds, ThreadIds, CommentIds].populateDynamically?, [loginHistory]), active/idle/unsubscribed(?) // contextObject.user
+
+- Topics -
+-- (Id, [ThreadIds], [origin/suggestedByUsersIds], creationDate, title, summary)
+
+- Threads -
+-- (Id, [TopicIds], [CommentIds], Author/UserId, creationDate, mostRecentUpdate/CommentDate, title/header, summary,
+AuthorStance{pro, con, neutral / 5pt: strongly agree to strongly disagree}, CommentsAverageStance{math(comments stance sum / number of comments)})
+
+- Comments -
+-- (Id, userId, TopicId, ThreadId, creationDate, mostRecentUpdate?, title/header, comment/summary, stance, [ResourceIds])
+
+- Resources -
+-- (Id, origin/userId, [TopicIds], [ThreadIds], creationDate, title, category, stance(s?),
+url/citation(s), reliabilityRating, [CommentIds], additionalNotes)
+
+Submit New Comment Flow(?):
+============================
+grab inputs
+    {
+        topicId:
+        threadId:
+        userId:
+        body: {
+            title:
+            conment:
+            stance: 
+        }
+        resources: [
+            {
+                title:
+                category:
+                citation:
+                reliabilityRating:
+                additionalNotes:
+                stance(s):
+            }
+        ]
+    }
+send to context function
+send to database
+    API.Create(
+        db.Comments.insertOne({
+            user: ${data.userId},
+            topicId: ${data.topicId},
+            threadId: ${threadId},
+            title: {$data.body.title},
+            comment: ${data.body.comment},
+            stance: ${data.body.stance},
+            resources: []
+        }).then(res => {
+            if (data.resources){
+                data.resources.forEach(x => {
+                    db.Resources.insertOne({
+                        origin: ${data.userId},
+                        title: ${data.resources.title},
+                        category: ${data.resources.category},
+                        citation: ${data.resources.citation},
+                        reliabilityRating: ${data.resources.reliabilityRating},
+                        stance: ${data.resources.stance},
+                        additionalNotes: ${data.resources.additionalNotes},
+                        topicIds: [${data.topicId}],
+                        threadIds: [${data.threadId}],
+                        commentIds: [${res._Id}]
+                    })
+                }).then(newRes => {
+                    db.Comments.update({
+                        _Id: ${newRes.commentIds[0]},
+                    }, $push: {
+                        resources: ${newRes._Id}
+                    }).then(
+                        return '' // to page updating state/rerender thread
+                    )
+                })
+            }
+        })
+    )
+
+
+Display Pulled Comment Flow(?):
+================================
