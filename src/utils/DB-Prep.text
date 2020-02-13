@@ -1,6 +1,6 @@
 DB Name: 
 
-Mongo, SQL, other?
+Mongo, SQL, other? // leaning towards sql and sequelize (merge jawsdb?)
 
 Tables (needs):
 ================
@@ -71,7 +71,7 @@ send to database
                         threadIds: [${data.threadId}],
                         commentIds: [${res._Id}]
                     })
-                }).then(newRes => {
+                }).then(newRes => {                         // ref differs between models and sql v mongo
                     db.Comments.update({
                         _Id: ${newRes.commentIds[0]},
                     }, $push: {
