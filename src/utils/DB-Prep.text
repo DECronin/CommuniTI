@@ -22,9 +22,9 @@ AuthorStance{pro, con, neutral / 5pt: strongly agree to strongly disagree}, Comm
 -- (Id, origin/userId, [TopicIds], [ThreadIds], creationDate, title, category, stance(s?),
 url/citation(s), reliabilityRating, [CommentIds], additionalNotes)
 
-Submit New Comment Flow(?):
+Submit New Comment Flow(?):           // referance cypher-text: (room-api.js and models folder {maybe seeds?})
 ============================
-grab inputs
+grab inputs // Model Definition?
     {
         topicId:
         threadId:
