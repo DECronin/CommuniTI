@@ -4,8 +4,10 @@ import Nav from "../Nav";
 
 function Header(){
     return (<>
-        <Nav />
-        <header>HEADER</header>
+        <div className="top-header row border border-success">
+            <Nav />
+            <header>HEADER</header>
+        </div>
     </>)
 }
 

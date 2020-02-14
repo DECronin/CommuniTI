@@ -15,11 +15,13 @@ function Dashboard(){
 
     return(<>
         {/* <FlowContext.Provider value={userFlow}> */}
-            <div>
+            <div className="container-fluid">
                 <Header />
+                <div className="row">
                 <TopicsList />
                 <CenterFocus />
                 <SuggestionsList />
+                </div>
             </div>
         {/* </FlowContext.Provider> */}
     </>)

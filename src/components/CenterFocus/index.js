@@ -6,31 +6,33 @@ function CenterFocus(){
     // const { activeCompunents } = useContext(FlowContext);
 
     return (<>
-        <h3>CenterFocus</h3>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-        <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
-    </>)
+        <div className="center-focus col-8 border border-primary">
+            <h3>CenterFocus</h3>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+            <p>cfvgbhnjnvinrei  rginoiwfninri fninwifniw wnr i wif wj iw iw ignow   wnfiwniofnwnfimwognive imwrinrfinfknf erifnowinfkc kwnfikew</p>
+    </div>
+   </>)
 }
 
 export default CenterFocus

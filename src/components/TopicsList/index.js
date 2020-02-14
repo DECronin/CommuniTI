@@ -6,7 +6,7 @@ function TopicsList(){
 
     // };
     return (<>
-        <div>
+        <div className="col-left col-2 border border-danger">
             <header>Topics:</header>
             <ul>
                 <li>1</li>
