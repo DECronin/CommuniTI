@@ -11,23 +11,25 @@ const FlowContext = React.createContext({
         other: '?'
     },
     activeComponents: {
-        pageFocus: 'login',
+        pageFocus: 'comments',
         topicID: '',
         threadID: '',
-        other: '?'
+        other: '?',
+        dataThreadArray: [],
+        dataResourceInputs: []
     },
-    loginAuth = () => {
+    // loginAuth = () => {
 
-    },
-    pullList = () => {
+    // },
+    // pullList = () => {
 
-    },
-    submitForm = () => {
+    // },
+    // submitForm = () => {
 
-    },
-    settings = () => {
+    // },
+    // settings = () => {
         
-    }
+    // }
 });
 
 export default FlowContext;
