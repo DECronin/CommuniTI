@@ -1,11 +1,36 @@
-import React from 'react'; // , { useContext }
+import React, {useState, useContext} from 'react'; 
+import $ from 'jquery';
+
+const unknown = "I do not currently know."
 
 function NewResourceForm({ source }) {
+    
+    function formObject(event){
+        let updatingData = [];
+        let formData = {
+            title: $('#res-title').val(),
+            stance: $('#res-stance').val(),
+            category: $('#category').val(),
+            url: $('#res-url').val(),
+            authors: $('#res-authors').val() || unknown,
+            publisher: $('#res-publisher').val() || unknown,
+            releaseDate: $('#release-date').val() || unknown,
+            additional: $('#additional').val()
+        };
+        updatingData.push(formData);
+        console.log(source + "\n------------\n" + JSON.stringify(updatingData))
+        // setFlow({
+        //     ...userFlow,
+        //     dataResourceInputs: updatingData
+        // });
+        // return formData
+        event.preventDefault();
+    }
     return (<ul className="form-wrapper border border-warning">
         <form>
             <div className="form-row">
                 <div className="form-group col-9">
-                    <input className="form-row form-group col-12" name="comment-title" id="comment-title" placeholder="Resource Name or Title"></input>
+                    <input className="form-row form-group col-12" name="res-title" id="res-title" placeholder="Resource Name or Title"></input>
                 </div>
                 <div className="form-group col-3">
                     <div className="form-check form-row">
@@ -23,15 +48,15 @@ function NewResourceForm({ source }) {
                 </div>
             </div>
             <div className="form-row">
-                <div className="category form-group col-4">
+                <div className="form-group col-4">
                     <label>Category:</label>
-                    <select className="form-control form-row form-group col-12">
-                        <option>Legal Text</option>
-                        <option>Academic Text</option>
-                        <option>News Article</option>
-                        <option>Journal Entry</option>
-                        <option>Personal Experience</option>
-                        <option>Other</option>
+                    <select className="form-control form-row form-group col-12" id="category">
+                        <option value="Legal Text">Legal Text</option>
+                        <option value="Academic Text">Academic Text</option>
+                        <option value="News Article">News Article</option>
+                        <option value="Journal Entry">Journal Entry</option>
+                        <option value="Personal Experience">Personal Experience</option>
+                        <option value="Other">Other</option>
                         {/* add more as progressed to finalization */}
                     </select>
                     {/* <input placeholder="Other"></input> If Category: Other, Please Explain */}
@@ -43,13 +68,13 @@ function NewResourceForm({ source }) {
                 <div className="citation form-group col-8">
                     <input className="form-row form-group col-11" id="res-url" placeholder="URL: (source or access to source // ie: Google Books)"></input>
                     <input className="form-row form-group col-11" id="res-authors" placeholder="Author(s) and/or Contributor(s)"></input>
-                    <input className="form-row form-group col-11" id="res-publishers" placeholder="Publisher or Sponsor"></input>
+                    <input className="form-row form-group col-11" id="res-publisher" placeholder="Publisher or Sponsor"></input>
                 </div>
             </div>
             <div className="form-row additional-notes">
-                <textarea className="form-group col-11" placeholder="Additional Notes (optional)" rows="2"></textarea>
+                <textarea className="form-group col-11" placeholder="Additional Notes (optional)" rows="2" id="additional"></textarea>
             </div>
-            <button>Add Resource</button> 
+            <button onClick={cb(formObject)}>Add Resource</button> 
             {/* / if source == userComment send to state array for display purposes else send to recommendationPend / */}
         </form>
     </ul>)
