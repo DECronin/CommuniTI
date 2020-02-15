@@ -1,12 +1,13 @@
-import React, {useState, useContext} from 'react'; 
+import React, {useContext} from 'react'; 
 import $ from 'jquery';
 
 const unknown = "I do not currently know."
 
-function NewResourceForm({ source }) {
-    
-    function formObject(event){
-        let updatingData = [];
+function NewResourceForm({ source, formData, setForm }) {
+       
+    function formObject(e, updatingData, setForm){//
+        let middleData = updatingData;
+        console.log(`click::::\nupdatingdata::\n${JSON.stringify(updatingData)}`);
         let formData = {
             title: $('#res-title').val(),
             stance: $('#res-stance').val(),
@@ -17,17 +18,16 @@ function NewResourceForm({ source }) {
             releaseDate: $('#release-date').val() || unknown,
             additional: $('#additional').val()
         };
-        updatingData.push(formData);
-        console.log(source + "\n------------\n" + JSON.stringify(updatingData))
-        // setFlow({
-        //     ...userFlow,
-        //     dataResourceInputs: updatingData
-        // });
-        // return formData
-        event.preventDefault();
+        middleData.push(formData);
+        console.log(source + "\n------------\n" + JSON.stringify(middleData))
+        setForm({
+            ...formData,
+            dataResourceInputs: updatingData
+        })
+        e.preventDefault()
     }
-    return (<ul className="form-wrapper border border-warning">
-        <form>
+    return (<ul className="form-wrapper border border-warning" key="next">
+                <h6>New Resource</h6>
             <div className="form-row">
                 <div className="form-group col-9">
                     <input className="form-row form-group col-12" name="res-title" id="res-title" placeholder="Resource Name or Title"></input>
@@ -74,9 +74,8 @@ function NewResourceForm({ source }) {
             <div className="form-row additional-notes">
                 <textarea className="form-group col-11" placeholder="Additional Notes (optional)" rows="2" id="additional"></textarea>
             </div>
-            <button onClick={formObject}>Add Resource</button> 
+            <button onClick={(e) => formObject(e, formData.dataResourceInputs, setForm)}>Add Resource</button> 
             {/* / if source == userComment send to state array for display purposes else send to recommendationPend / */}
-        </form>
     </ul>)
 }
 
