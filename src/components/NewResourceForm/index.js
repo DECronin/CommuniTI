@@ -74,7 +74,7 @@ function NewResourceForm({ source }) {
             <div className="form-row additional-notes">
                 <textarea className="form-group col-11" placeholder="Additional Notes (optional)" rows="2" id="additional"></textarea>
             </div>
-            <button onClick={cb(formObject)}>Add Resource</button> 
+            <button onClick={formObject}>Add Resource</button> 
             {/* / if source == userComment send to state array for display purposes else send to recommendationPend / */}
         </form>
     </ul>)
