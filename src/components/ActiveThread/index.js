@@ -28,7 +28,7 @@ class ActiveThread extends Component {
     renderThreadArray = comments => {
         let question = comments.shift();
         let feed = [
-            <ul className="question-wrapper border border-primary" key={question.id}>
+            <ul className="question-wrapper border border-primary" key={question.id.toString()}>
                 <div className="row question-header">
                     <div className="username col-10">{question.title}</div>
                     <div className="stance col-2">{question.stance}</div>
@@ -44,13 +44,13 @@ class ActiveThread extends Component {
                 </div>
                 <div className="question-resources row">
                     <ul>
-                        <li key="res-1">Populate Resources</li>
+                        <li key="1">Populate Resources</li>
                     </ul>
                 </div><br></br>
             </ul>];
         comments.forEach(el => {
             feed.push(<>
-                <ul className="comment-wrapper border border-success" key={el.id}>
+                <ul className="comment-wrapper border border-success" key={el.id.toString()}>
                     <div className="row comment-header">
                         <div className="username col-10">{el.title}</div>
                         <div className="stance col-2">{el.stance}</div>
@@ -81,7 +81,6 @@ class ActiveThread extends Component {
             {this.renderThreadArray(fillerData)}
             <CommentForm />
         </ul>
-        <button>Submit</button>
         </>)
     }
 }
