@@ -1,35 +1,11 @@
 import React from 'react';
 
-const FlowContext = React.createContext({
-    user: {
-        loginStatus: false,
-        lastName: '',
-        firstName: '',
-        username: '',
-        email: '',
-        phone: '',
-        other: '?'
-    },
-    activeComponents: {
-        pageFocus: 'comments',
-        topicID: '',
-        threadID: '',
-        other: '?',
-        dataThreadArray: [],
-        dataResourceInputs: []
-    },
-    // loginAuth = () => {
-
-    // },
-    // pullList = () => {
-
-    // },
-    // submitForm = () => {
-
-    // },
-    // settings = () => {
-        
-    // }
+const FocusContext = React.createContext({
+    pageFocus: 'comments',
+    topicID: '',
+    threadID: '',
+    other: '?',
+    dataThreadArray: []
 });
 
-export default FlowContext;
+export default FocusContext;

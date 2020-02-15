@@ -34,9 +34,9 @@ function Dashboard(){
             <div className="container-fluid">
                 <Header />
                 <div className="row">
-                <TopicsList />
-                <CenterFocus page={'comments'}/>
-                <SuggestionsList />
+                    <TopicsList />
+                    <CenterFocus page={'comments'}/>
+                    <SuggestionsList />
                 </div>
             </div>
         {/* </FlowContext.Provider> */}
