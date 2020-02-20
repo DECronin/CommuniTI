@@ -1,0 +1,102 @@
+REMINDERS::::::
+===================
+~~ reposrt buttons
+~~ multiple topics to 1 thread
+~~ dont db topic ids into comments table?
+~~ SEARCH box?
+~~ server // express app w/ client directory?
+
+DB Name: 
+
+Mongo, SQL, other? // leaning towards sql and sequelize (merge jawsdb?)
+
+Tables (needs):
+================
+- Users -
+-- (Id, FirstName, LastName, Username, Email, Phone, Password, Other/Settings, dateJoined, [TopicIds, ThreadIds, 
+CommentIds].populateDynamically?, [loginHistory]), accountStatus{active/idle/inactive/banned/suspended} // contextObject.user
+
+- Login History -
+-- (Id, userId, timeIn, timeOut, durration)
+
+- Topics -
+-- (Id, [ThreadIds], [origin/suggestedByUsersIds], creationDate, title, summary)
+
+- Threads -
+-- (Id, [TopicIds], [CommentIds], Author/UserId, creationDate, mostRecentUpdate/CommentDate, title/header, summary,
+AuthorStance{pro, con, neutral / 5pt: strongly agree to strongly disagree}, CommentsAverageStance{math(comments stance sum / number of comments)})
+
+- Comments -
+-- (Id, userId, TopicId, ThreadId, creationDate, mostRecentUpdate?, title/header, comment/summary, stance, [ResourceIds])
+
+- Resources -
+-- (Id, origin/userId, [TopicIds], [ThreadIds], creationDate, title, category, stance(s?),
+url/citation(s), reliabilityRating, [CommentIds], additionalNotes)
+
+- Separate DB for 'Pending' Resources - // maybe one for pending users as well?
+
+Submit New Comment Flow(?):           // referance cypher-text: (room-api.js and models folder {maybe seeds?})
+============================
+grab inputs // Model Definition?
+    {
+        topicId:
+        threadId:
+        userId:
+        body: {
+            title:
+            conment:
+            stance: 
+        }
+        resources: [
+            {
+                title:
+                category:
+                citation:
+                reliabilityRating:
+                additionalNotes:
+                stance(s):
+            }
+        ]
+    }
+send to context function
+send to database
+    API.Create(
+        db.Comments.insertOne({
+            user: ${data.userId},
+            topicId: ${data.topicId},
+            threadId: ${threadId},
+            title: {$data.body.title},
+            comment: ${data.body.comment},
+            stance: ${data.body.stance},
+            resources: []
+        }).then(res => {
+            if (data.resources){
+                data.resources.forEach(x => {
+                    db.Resources.insertOne({
+                        origin: ${data.userId},
+                        title: ${data.resources.title},
+                        category: ${data.resources.category},
+                        citation: ${data.resources.citation},
+                        reliabilityRating: ${data.resources.reliabilityRating},
+                        stance: ${data.resources.stance},
+                        additionalNotes: ${data.resources.additionalNotes},
+                        topicIds: [${data.topicId}],
+                        threadIds: [${data.threadId}],
+                        commentIds: [${res._Id}]
+                    })
+                }).then(newRes => {                         // ref differs between models and sql v mongo
+                    db.Comments.update({
+                        _Id: ${newRes.commentIds[0]},
+                    }, $push: {
+                        resources: ${newRes._Id}
+                    }).then(
+                        return '' // to page updating state/rerender thread
+                    )
+                })
+            }
+        })
+    )
+                                                    //////~~~~~~~~~~~~~ make 'report/delete' buttons for each resource (in coms?) as well
+
+Display Pulled Comment Flow(?):
+================================
