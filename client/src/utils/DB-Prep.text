@@ -1,10 +1,10 @@
 REMINDERS::::::
 ===================
-~~ reposrt buttons
+~~ report buttons
 ~~ multiple topics to 1 thread
 ~~ dont db topic ids into comments table?
 ~~ SEARCH box?
-~~ server // express app w/ client directory?
+~~ Instead of stance: other add box explaining to put neutral
 
 DB Name: 
 
@@ -16,7 +16,7 @@ Tables (needs):
 -- (Id, FirstName, LastName, Username, Email, Phone, Password, Other/Settings, dateJoined, [TopicIds, ThreadIds, 
 CommentIds].populateDynamically?, [loginHistory]), accountStatus{active/idle/inactive/banned/suspended} // contextObject.user
 
-- Login History -
+- Login History - "Session(s)"
 -- (Id, userId, timeIn, timeOut, durration)
 
 - Topics -
