@@ -48,6 +48,6 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             unique: false
         }
-    });
+    },{underscored: true});
     return Resource;
 };

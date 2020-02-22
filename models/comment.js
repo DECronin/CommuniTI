@@ -15,6 +15,6 @@ module.exports = (sequelize, DataTypes) => {
             unique: false,
             allowNull: false
         }
-    });
+    },{underscored: true});
     return Comment;
 };
