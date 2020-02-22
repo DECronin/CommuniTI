@@ -65,18 +65,9 @@ function CommentForm() {
                     <input className="form-row form-group col-12" name="comment-title" id="comment-title" placeholder="Title Statement"></input>
                 </div>
                 <div className="form-group col-3">
-                    <div className="form-check form-row">
-                        <input className="form-check-input" type="radio" name="stance-range" id="stance-range" value="stance-range" />
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Pro</label>
                         <input type="range" className="form-group col-6" id="res-stance" min="1" max="5" defaultValue="3" />
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Con</label>
-                    </div>
-                    <div className="form-check form-row">
-                        <input className="form-check-input" type="radio" name="stance-other" id="stance-other" value="thance-other" />
-                        <label className="form-check-label" htmlFor="stance-other">
-                            Other
-                        </label>
-                    </div>
                 </div>
             </div>
             <div className="form-row">
