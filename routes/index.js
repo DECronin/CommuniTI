@@ -2,6 +2,8 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 
+// router.route("/api/list/comment").post((req, res) => res.json({message: "top level"}))
+// console.log("~/routes/index.js");
 // API Routes
 router.use("/api", apiRoutes);
 

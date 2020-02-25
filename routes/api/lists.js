@@ -8,17 +8,17 @@ router.route("/topics").get(listController.findTopics)
 // list threads
 router.route("/topic/:id").get(listController.findThreads)
 // new thread
-router.route("/thread").create(listController.newThread)
+router.route("/thread").post(listController.newThread)
 // list comments
 router.route("/thread/:id").get(listController.findComments)
 // new comment
-router.route("/comment").create(listController.newComment)
+router.route("/comment").post(listController.newComment)
 // update comment
 router.route("/comment/:id").put(listController.updateComment)
 // list resources
 router.route("/resources").get(listController.findResources)
 // new resource
-router.route("/resources").create(listController.newResource)
+router.route("/resources").post(listController.newResource)
 // update resource
 router.route("/resources/:id").put(listController.updateResource)
 

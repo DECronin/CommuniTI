@@ -39,15 +39,17 @@ module.exports = {
 
     // post new comment
     newComment: function (req, res) {
-        console.log(`api/comment post req.body::\n${req.body}`);
-        db.Comment.create({
-            title: req.body.title,
-            stance: req.body.stance,
-            summary: req.body.summary,
-            status: 'posted'
-        }).then(data => {
-            res.json(data);
-        });
+        // console.log(`CONTROLLER CONNECTION `);
+        // console.log(`api/comment post req.body::\n${req.body}`);
+        // db.Comment.create({
+        //     title: req.body.title,
+        //     stance: req.body.stance,
+        //     summary: req.body.summary,
+        //     status: 'posted'
+        // }).then(data => {
+        //     res.json(data);
+        // });
+        res.status(200).json({messege: "New Comment Sent"})
     },
 
     // update comment
