@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // import API from "../utils/API";
 import CenterFocus from "../components/CenterFocus";
 import Header from "../components/Header";
