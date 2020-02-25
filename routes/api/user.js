@@ -1,5 +1,5 @@
-// const router = require("express").Router();
-// const booksController = require("../../controllers/booksController");
+const router = require("express").Router();
+const userController = require("../../controllers/userControl");
 
 // // Matches with "/api/books"
 // router.route("/")
@@ -12,5 +12,10 @@
 //   .get(booksController.findById)
 //   .put(booksController.update)
 //   .delete(booksController.remove);
+
+// get users for comparison?
+// new user
+// update?
+
 
 // module.exports = router;

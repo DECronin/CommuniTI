@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'; 
+import React from 'react'; 
 import $ from 'jquery';
 
 const unknown = "I do not currently know."
@@ -7,8 +7,8 @@ function NewResourceForm({ source, formData, setForm }) {
        
     function formObject(e, updatingData, setForm){//
         let middleData = updatingData;
-        console.log(`click::::\nupdatingdata::\n${JSON.stringify(updatingData)}`);
-        let formData = {
+        // console.log(`click::::\nupdatingdata::\n${JSON.stringify(updatingData)}`);
+        let resData = {
             title: $('#res-title').val(),
             stance: $('#res-stance').val(),
             category: $('#category').val(),
@@ -18,11 +18,11 @@ function NewResourceForm({ source, formData, setForm }) {
             releaseDate: $('#release-date').val() || unknown,
             additional: $('#additional').val()
         };
-        middleData.push(formData);
-        console.log(source + "\n------------\n" + JSON.stringify(middleData))
+        middleData.push(resData);
+        // console.log(source + "\n------------\n" + JSON.stringify(middleData))
         setForm({
             ...formData,
-            dataResourceInputs: updatingData
+            dataResourceInputs: middleData
         })
         e.preventDefault()
     }

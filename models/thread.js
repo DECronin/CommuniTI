@@ -11,9 +11,15 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         summary: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             unique: false,
             allowNull: false
+        },
+        status: {
+            type: DataTypes.STRING,
+            unique: false,
+            allowNull: false,
+            defaultValue: 'posted'
         }
     },{underscored: true});
     return Thread;

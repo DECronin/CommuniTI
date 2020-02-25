@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         category: {
-            type: DataTypes.String,
+            type: DataTypes.STRING,
             unique: false,
             allowNull: false
         },

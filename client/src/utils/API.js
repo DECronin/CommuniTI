@@ -1,14 +1,31 @@
+import axios from 'axios';
+
 export default {
-    GET: () => {
-        return X
+    findTopics: () => {
+        return axios.get("api/list/topics");
     },
-    UPDATE: () => {
-        return X
+    findThreads: (id) => {
+        return axios.get("api/list/topic/" + id);
     },
-    CREATE: () => {
-        return X
+    newThread: (data) => {
+        return axios.post("api/list/thread", data);
     },
-    DELETE: () => {
-        return X
+    findComments: (id) => {
+        return axios.get("api/list/thread/" + id);
     },
+    newComment: (data) => {
+        return axios.post("api/list/comment", data);
+    },
+    updateComment: (id, data) => {
+        return axios.put("api/list/comment" + id, data)
+    },
+    findResources: () => {
+        return axios.get("api/list/resources");
+    },
+    newResource: (data) => {
+        return axios.post("api/list/resources", data);
+    },
+    updateResource: (id, data) => {
+        return axios.put("api/list/resources" + id, data)
+    }
 }

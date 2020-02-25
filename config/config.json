@@ -1,0 +1,33 @@
+{
+    "development": {
+        "username": "root",
+        "password": "root",
+        "database": "communiti_db",
+        "host": "127.0.0.1",
+        "dialect": "mysql",
+        "logging": false,
+        "define": {
+            "underscored": true
+        }
+    },
+    "test": {
+        "username": "root",
+        "password": null,
+        "database": "communiti_db",
+        "host": "127.0.0.1",
+        "dialect": "mysql",
+        "define": {
+            "underscored": true
+        }
+    },
+    "production": {
+        "username": "z20nu9j37mznks1o",
+        "password": "e7ycr2t9n55jm5xj",
+        "database": "ji5opdvh0xtl1gpa",
+        "host": "zj2x67aktl2o6q2n.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        "dialect": "mysql",
+        "define": {
+            "underscored": true
+        }
+    }
+}

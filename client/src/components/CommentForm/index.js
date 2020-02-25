@@ -1,5 +1,7 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import NewResourceForm from '../NewResourceForm';
+import API from '../../utils/API';
+import $ from 'jquery';
 import BuildFormContext from '../../utils/BuildFormContext';
 
 function CommentForm() {
@@ -15,13 +17,12 @@ function CommentForm() {
         stance: '',
         comment: '',
         displayResources: [],
-        dataResourceInputs: [{"title":"","stance":"3","category":"Legal Text","url":"","authors":"I do not currently know.","publisher":"I do not currently know.","releaseDate":"I do not currently know.","additional":""}],
+        dataResourceInputs: [],
         other: '?'
     })
 
     function renderResourcesList(data) {
-        console.log(`data======\n\n${JSON.stringify(data)}`)
-        
+        // console.log(`data======\n\n${JSON.stringify(data)}`)
         let displayData = data.map(el => <>
             <li className="single-resource-wrapper" key={data.indexOf(el).toString()}>
                  <div className="row res-header">
@@ -43,18 +44,18 @@ function CommentForm() {
                  </li>
             </>
         )
-            // console.log("displaData " + JSON.stringify(displayData));
-            // setForm({
-            //     ...formData,
-            //     resourceIndex: formData.resourceIndex++,
-            //     displayResources: displayData
-            // })
             return displayData
-        // }
     };
-    // useEffect(() =>{
-    //     renderResourcesList(formData.dataResourceInputs)
-    // }, [formData.dataResourceInputs])
+    function submitComment(e){
+        setForm({...formData, 
+            title: $("#comment-title"),
+            stance: $("#res-stance"),
+            comment: $("#comment-body")
+        })
+        console.log("submit click ==::==\n" + JSON.stringify(formData));
+        API.newComment((formData));
+        e.preventDefault();
+    }
 
     return (<ul className="form-wrapper border border-warning" key="new">
         <BuildFormContext.Provider value={formData, setForm}>
@@ -80,7 +81,7 @@ function CommentForm() {
                     <NewResourceForm source="userComment" formData={formData} setForm={setForm} />
                 </ul>
             </div>
-        <button>Submit</button>
+        <button onClick={e => submitComment(e)}>Submit</button>
         </form>
         </BuildFormContext.Provider>
     </ul>)
