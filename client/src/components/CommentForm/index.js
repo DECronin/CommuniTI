@@ -53,12 +53,12 @@ function CommentForm() {
             comment: $("#comment-body")
         })
         console.log("submit click ==::==\n" + JSON.stringify(formData));
-        API.newComment((formData));
+        API.newComment(formData);
         e.preventDefault();
     }
 
     return (<ul className="form-wrapper border border-warning" key="new">
-        <BuildFormContext.Provider value={formData, setForm}>
+        <BuildFormContext.Provider value={formData}>
         <form>
             <h5>New Comment</h5>
             <div className="form-row">
