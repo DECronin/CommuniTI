@@ -37,6 +37,8 @@ function activeFocusContent(pageName) {
         //     return <TOS />
         // default:
         //     return <Login />
+        default:
+            return <ActiveThread />
     }
 }
 

@@ -25,6 +25,7 @@ const fillerData = [{
 }];
 
 class ActiveThread extends Component {
+    
     renderThreadArray = comments => {
         let question = comments.shift();
         let feed = [
