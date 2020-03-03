@@ -5,14 +5,14 @@ const db = require('../models');
 module.exports = {
     findTopics: function (req, res) {
         // render list or topics' links
-        db.Topic.findAll({}).then(data => {
+        db.Topics.findAll({}).then(data => {
             res.json(data);
         });
     },
 
     // render list of threads from topicId
     findThreads: function (req, res) {
-        db.Thread.findAll({ where: { topic_id: req.params.id } }).then(data => {
+        db.Threads.findAll({ where: { topic_id: req.params.id } }).then(data => {
             res.json(data);
         });
     },
@@ -20,7 +20,7 @@ module.exports = {
     // post new thread
     newThread(req, res) {
         console.log(`api/thread post req.body::\n${req.body}`);
-        db.Thread.create({
+        db.Threads.create({
             title: req.body.title,
             stance: req.body.stance,
             summary: req.body.summary,
@@ -32,31 +32,27 @@ module.exports = {
 
     // render comments for thread
     findComments: function (req, res) {
-        db.Comment.findAll({ where: { thread_id: req.params.id } }).then(data => {
+        db.Comments.findAll({ where: { thread_id: req.params.id } }).then(data => {
             res.json(data);
         });
     },
 
     // post new comment
     newComment: function (req, res) {
-        // console.log(`CONTROLLER CONNECTION `);
-        // console.log(`api/comment post req.body::\n${req.body}`);
-        // db.Comment.create({
-        //     title: req.body.title,
-        //     stance: req.body.stance,
-        //     summary: req.body.summary,
-        //     status: 'posted'
-        // }).then(data => {
-        //     res.json(data);
-        // });
-        res.status(200).json({messege: "New Comment Sent"})
+        const inputsData = req.body;
+        db.Comments.create({
+            title: inputsData.title,
+            stance: inputsData.stance,
+            summary: inputsData.comment,
+            status: 'posted'
+        }).then(data => res.json(data));
     },
 
     // update comment
     // report status updated through body?
     updateComment: function (req, res) {
         console.log(`api/comment update req.body::\n${req.body}`);
-        db.Comment.update({}, {
+        db.Comments.update({}, {
             where: {
                 id: req.params.id
             }
@@ -68,7 +64,7 @@ module.exports = {
 
     // render resources list
     findResources: function (req, res) {
-        db.Resource.findAll({}).then(data => {
+        db.Resources.findAll({}).then(data => {
             res.json(data);
         });
     },
@@ -76,7 +72,7 @@ module.exports = {
     // post new resource
     newResource: function (req, res) {
         console.log(`api/resource post req.body::\n${req.body}`);
-        db.Resource.create({
+        db.Resources.create({
             title: req.body.title,
             stance: req.body.stance,
             category: '',
@@ -94,7 +90,7 @@ module.exports = {
     // report status updated through body?
     updateResource: function (req, res) {
         console.log(`api/resource update req.body::\n${req.body}`);
-        db.Resource.update({}, {
+        db.Resources.update({}, {
             where: {
                 id: req.params.id
             }
