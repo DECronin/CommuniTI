@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NewResourceForm from '../NewResourceForm';
 import API from '../../utils/API';
 import $ from 'jquery';
@@ -21,10 +21,15 @@ function CommentForm() {
         other: '?'
     })
 
+    useEffect(() => {
+        console.log(`setting`);
+        // console.log(JSON.stringify(formData))
+        //reset form?
+    }, [formData]);
+
     function renderResourcesList(data) {
-        // console.log(`data======\n\n${JSON.stringify(data)}`)
         let displayData = data.map(el => <>
-            <li className="single-resource-wrapper" key={data.indexOf(el).toString()}>
+            <li className="single-resource-wrapper" key={data.indexOf(el)}>
                  <div className="row res-header">
                      <div className="col-10">{el.title}</div>
                      <div className="col-2">Stance</div>
@@ -41,29 +46,51 @@ function CommentForm() {
                      </div>
                  </div>
                  <div className="row res-footer col-12">{el.additional}</div>
-                 </li>
-            </>
+            </li>
+        </>
         )
             return displayData
     };
+
+    function validate(data){
+        // && formData.dataResourceInputs.length >= 1
+        return (data.title !== '' && data.comment !== '') ? true : false
+    }
+
     function submitComment(e){
-        setForm({...formData, 
-            title: $("#comment-title"),
-            stance: $("#res-stance"),
-            comment: $("#comment-body")
-        })
-        console.log("submit click ==::==\n" + JSON.stringify(formData));
-        API.newComment(formData);
         e.preventDefault();
+        // test if valid -- title, min 1 resource and comment
+        let inputs = {
+            title: $("#comment-title").val(),
+            stance: $("#res-stance").val(),
+            comment: $("#comment-body").val()
+        }
+        if (validate(inputs)){
+            setForm({...formData,
+                title: inputs.title,
+                stance: inputs.stance,
+                comment: inputs.comment
+            })
+            console.log("submit click ==::==\n" + JSON.stringify(formData));
+            API.newComment({...formData, // in controller populate comment with associated resources from context
+                title: $("#comment-title").val(),
+                stance: $("#res-stance").val(),
+                comment: $("#comment-body").val()
+            });
+        } else {
+            if (inputs.title === '') alert("Please Provide a Title for this Comment.")
+            if (inputs.comment === '') alert("Please Provide Context to this Comment.")
+            if (formData.dataResourceInputs.length < 1) alert("Please Support this Comment with A minimum of 1 Resource")
+        }
     }
 
     return (<ul className="form-wrapper border border-warning" key="new">
         <BuildFormContext.Provider value={formData}>
-        <form>
+        <form className="needs-validation" novalidate>
             <h5>New Comment</h5>
             <div className="form-row">
                 <div className="form-group col-9">
-                    <input className="form-row form-group col-12" name="comment-title" id="comment-title" placeholder="Title Statement"></input>
+                    <input className="form-row form-group col-12" name="comment-title" id="comment-title" placeholder="Title Statement" required="true"></input>
                 </div>
                 <div className="form-group col-3">
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Pro</label>
@@ -72,7 +99,7 @@ function CommentForm() {
                 </div>
             </div>
             <div className="form-row">
-                <textarea className="form-group col-12" rows="4" placeholder="Comment..." name="comment-body" id="comment-body"></textarea>
+                <textarea className="form-group col-12" rows="4" placeholder="Comment..." name="comment-body" id="comment-body" required="true"></textarea>
             </div>
             <div className="resource-wrapper">
                 <ul>
@@ -88,6 +115,3 @@ function CommentForm() {
 }
 
 export default CommentForm
-
-//(username, thread, topic?, timestamp later grabbed from state)
-// sumbit button 
