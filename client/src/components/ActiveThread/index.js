@@ -29,7 +29,7 @@ class ActiveThread extends Component {
     renderThreadArray = comments => {
         let question = comments.shift();
         let feed = [
-            <ul className="question-wrapper border border-primary" key={question.id.toString()}>
+            <ul className="question-wrapper border border-primary" key={question.id}>
                 <div className="row question-header">
                     <div className="username col-10">{question.title}</div>
                     <div className="stance col-2">{question.stance}</div>
