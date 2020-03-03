@@ -14,9 +14,7 @@ export default {
         return axios.get("api/list/thread/" + id);
     },
     newComment: (data) => {
-        console.log(`API CONNECTION "newComment`);
-        console.log(data);
-        return axios.post("/api/list/comment");
+        return axios.post("/api/list/comment", data);
     },
     updateComment: (id, data) => {
         return axios.put("api/list/comment" + id, data)
