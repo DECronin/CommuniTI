@@ -25,6 +25,7 @@
     "if-env": "^1.0.4",
     "morgan": "^1.9.1",
     "mysql2": "^2.1.0",
+    "react-router-dom": "^5.1.2",
     "sequelize": "^5.21.5"
   }
 }
