@@ -4,10 +4,14 @@ import $ from 'jquery';
 const unknown = "I do not currently know."
 
 function NewResourceForm({ source, formData, setForm }) {
+
+    function validate(data){
+        return (data.title && data.category && data.url) ? true : false
+    }
        
     function formObject(e, updatingData, setForm){//
         let middleData = updatingData;
-        // console.log(`click::::\nupdatingdata::\n${JSON.stringify(updatingData)}`);
+        // test if title and url are included
         let resData = {
             title: $('#res-title').val(),
             stance: $('#res-stance').val(),
@@ -18,19 +22,24 @@ function NewResourceForm({ source, formData, setForm }) {
             releaseDate: $('#release-date').val() || unknown,
             additional: $('#additional').val()
         };
-        middleData.push(resData);
-        // console.log(source + "\n------------\n" + JSON.stringify(middleData))
-        setForm({
-            ...formData,
-            dataResourceInputs: middleData
-        })
+        if (validate(resData)){
+            middleData.push(resData);
+            setForm({
+                ...formData,
+                dataResourceInputs: middleData
+            })
+        } else {
+            if (resData.title === '') alert("Please Provide a Title for this Resource.")
+            if (resData.url === '') alert("Please Provide a URL to Support this Resource.")
+            if (!resData.category) alert("Please Provide a Category for this Resource. (If 'Other' explain in 'Additional Notes'.)")
+        }
         e.preventDefault()
     }
     return (<ul className="form-wrapper border border-warning" key="next">
                 <h6>New Resource</h6>
             <div className="form-row">
                 <div className="form-group col-9">
-                    <input className="form-row form-group col-12" name="res-title" id="res-title" placeholder="Resource Name or Title"></input>
+                    <input className="form-row form-group col-12" name="res-title" id="res-title" placeholder="Resource Name or Title" required="true"></input>
                 </div>
                 <div className="form-group col-3">
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Pro</label>
@@ -41,7 +50,7 @@ function NewResourceForm({ source, formData, setForm }) {
             <div className="form-row">
                 <div className="form-group col-4">
                     <label>Category:</label>
-                    <select className="form-control form-row form-group col-12" id="category">
+                    <select className="form-control form-row form-group col-12" id="category" required="true">
                         <option value="Legal Text">Legal Text</option>
                         <option value="Academic Text">Academic Text</option>
                         <option value="News Article">News Article</option>
@@ -57,7 +66,7 @@ function NewResourceForm({ source, formData, setForm }) {
                     </div>
                 </div>
                 <div className="citation form-group col-8">
-                    <input className="form-row form-group col-11" id="res-url" placeholder="URL: (source or access to source // ie: Google Books)"></input>
+                    <input className="form-row form-group col-11" id="res-url" placeholder="URL: (source or access to source // ie: Google Books)" required="true"></input>
                     <input className="form-row form-group col-11" id="res-authors" placeholder="Author(s) and/or Contributor(s)"></input>
                     <input className="form-row form-group col-11" id="res-publisher" placeholder="Publisher or Sponsor"></input>
                 </div>
