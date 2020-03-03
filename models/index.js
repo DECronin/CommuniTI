@@ -46,10 +46,10 @@ db.Sequelize = Sequelize;
 // db.Comments.belongsTo(db.Threads, {foreignKey: "thread_id"});
 // db.Threads.hasMany(db.Comments);
 // db.Comments.hasOne(db.Threads, {foreignKey: "thread_id"});
-// db.Topics.belongsToMany( db.Threads, {foreignKey: "topic_id"});
-// db.Threads.hasMany(db.Topics);
-// db.Threads.belongsToMany(db.Topics, {foreignKey: "thread_id"});
-// db.Topics.hasMany(db.Threads);
+
+// db.Topics.belongsToMany( db.Threads, {through: "threadTopics"});
+// db.Threads.belongsToMany(db.Topics, {through: "threadTopics"});
+
 // db.Users.belongsToMany(db.Comments, {foreignKey: "user_ids"});
 // db.Commments.hasOne(db.User, {foreignKey: "user_id"});
 // db.Resources.belongsToMany(db.Comments);
