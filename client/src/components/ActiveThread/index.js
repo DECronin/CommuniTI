@@ -17,29 +17,29 @@ function ActiveThread () {
     }, [displayComments.needsUpdated])
     
     function renderThreadArray (comments) {
-        // let feed = [];
-        let question = comments.shift();
-        let feed = [
-            <ul className="question-wrapper border border-primary" key={question.id.toString()}>
-                <div className="row question-header">
-                    <div className="username col-10">{question.title}</div>
-                    <div className="stance col-2">{question.stance}</div>
-                </div>
-                <div className="question-body row">
-                    <p>{question.summary}</p>
-                </div>
-                <div className="question-footer row">
-                    <div className="author col-7">{question.author}</div>
-                    <div className="updated-date col-4">{question.updateDate}</div>
-                    {/* / if user === logedin user then "edit or delete" button / */}
-                    <button className="report-button">Report</button>
-                </div>
-                <div className="question-resources row">
-                    <ul key={`res-${question.id}`}>
-                        <li key="1">Populate Resources</li>
-                    </ul>
-                </div><br></br>
-            </ul>];
+        let feed = [];
+        // let question = comments.shift();
+        // let feed = [
+        //     <ul className="question-wrapper border border-primary" key={question.id.toString()}>
+        //         <div className="row question-header">
+        //             <div className="username col-10">{question.title}</div>
+        //             <div className="stance col-2">{question.stance}</div>
+        //         </div>
+        //         <div className="question-body row">
+        //             <p>{question.summary}</p>
+        //         </div>
+        //         <div className="question-footer row">
+        //             <div className="author col-7">{question.author}</div>
+        //             <div className="updated-date col-4">{question.updateDate}</div>
+        //             {/* / if user === logedin user then "edit or delete" button / */}
+        //             <button className="report-button">Report</button>
+        //         </div>
+        //         <div className="question-resources row">
+        //             <ul key={`res-${question.id}`}>
+        //                 <li key="1">Populate Resources</li>
+        //             </ul>
+        //         </div><br></br>
+        //     </ul>];
         comments.forEach(el => {
             console.log(el)
             feed.push(<>
