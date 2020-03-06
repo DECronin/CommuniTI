@@ -58,7 +58,6 @@ function CommentForm() {
     }
 
     function submitComment(e){
-        e.preventDefault();
         // test if valid -- title, min 1 resource and comment
         let inputs = {
             title: $("#comment-title").val(),
@@ -74,32 +73,33 @@ function CommentForm() {
             console.log("submit click ==::==\n" + JSON.stringify(formData));
             API.newComment({...formData, // in controller populate comment with associated resources from context
                 title: $("#comment-title").val(),
-                stance: $("#res-stance").val(),
+                stance: $("#comment-stance").val(),
                 comment: $("#comment-body").val()
-            });
+            }).then(window.location.reload());
         } else {
             if (inputs.title === '') alert("Please Provide a Title for this Comment.")
             if (inputs.comment === '') alert("Please Provide Context to this Comment.")
             if (formData.dataResourceInputs.length < 1) alert("Please Support this Comment with A minimum of 1 Resource")
         }
+        e.preventDefault();
     }
 
     return (<ul className="form-wrapper border border-warning" key="new">
         <BuildFormContext.Provider value={formData}>
-        <form className="needs-validation" novalidate>
+        <form className="needs-validation" noValidate>
             <h5>New Comment</h5>
             <div className="form-row">
                 <div className="form-group col-9">
-                    <input className="form-row form-group col-12" name="comment-title" id="comment-title" placeholder="Title Statement" required="true"></input>
+                    <input className="form-row form-group col-12" name="comment-title" id="comment-title" placeholder="Title Statement" required={true}></input>
                 </div>
                 <div className="form-group col-3">
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Pro</label>
-                        <input type="range" className="form-group col-6" id="res-stance" min="1" max="5" defaultValue="3" />
+                        <input type="range" className="form-group col-6" id="comment-stance" min="1" max="5" defaultValue="3" />
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Con</label>
                 </div>
             </div>
             <div className="form-row">
-                <textarea className="form-group col-12" rows="4" placeholder="Comment..." name="comment-body" id="comment-body" required="true"></textarea>
+                <textarea className="form-group col-12" rows="4" placeholder="Comment..." name="comment-body" id="comment-body" required={true}></textarea>
             </div>
             <div className="resource-wrapper">
                 <ul>
