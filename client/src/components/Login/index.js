@@ -1,4 +1,4 @@
-import React, {useState} from 'react'; 
+import React from 'react'; 
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import $ from 'jquery';
@@ -7,7 +7,6 @@ function LoginForm(){
     function validate(data){
         console.log("login form\n\n::" + JSON.stringify(data));
         API.login(data).then(result => {
-            console.log(`test:: ${JSON.stringify(data)}\nlogin form result:: \n ${JSON.stringify(result)}`);
             window.location.href = '/newtopic';
         })
     }
