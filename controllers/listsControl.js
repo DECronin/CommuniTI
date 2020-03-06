@@ -3,8 +3,8 @@ const db = require('../models');
 // const router = express.Router();
 
 module.exports = {
+    // render list of topics' links
     findTopics: function (req, res) {
-        // render list or topics' links
         db.Topics.findAll({}).then(data => {
             res.json(data);
         });
@@ -30,9 +30,9 @@ module.exports = {
         });
     },
 
-    // render comments for thread
+    // render comments for thread{ where: { thread_id: req.params.id } }
     findComments: function (req, res) {
-        db.Comments.findAll({ where: { thread_id: req.params.id } }).then(data => {
+        db.Comments.findAll().then(data => {
             res.json(data);
         });
     },
