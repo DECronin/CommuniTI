@@ -39,7 +39,7 @@ function NewResourceForm({ source, formData, setForm }) {
                 <h6>New Resource</h6>
             <div className="form-row">
                 <div className="form-group col-9">
-                    <input className="form-row form-group col-12" name="res-title" id="res-title" placeholder="Resource Name or Title" required="true"></input>
+                    <input className="form-row form-group col-12" name="res-title" id="res-title" placeholder="Resource Name or Title" required={true}></input>
                 </div>
                 <div className="form-group col-3">
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Pro</label>
@@ -50,7 +50,7 @@ function NewResourceForm({ source, formData, setForm }) {
             <div className="form-row">
                 <div className="form-group col-4">
                     <label>Category:</label>
-                    <select className="form-control form-row form-group col-12" id="category" required="true">
+                    <select className="form-control form-row form-group col-12" id="category" required={true}>
                         <option value="Legal Text">Legal Text</option>
                         <option value="Academic Text">Academic Text</option>
                         <option value="News Article">News Article</option>
@@ -66,7 +66,7 @@ function NewResourceForm({ source, formData, setForm }) {
                     </div>
                 </div>
                 <div className="citation form-group col-8">
-                    <input className="form-row form-group col-11" id="res-url" placeholder="URL: (source or access to source // ie: Google Books)" required="true"></input>
+                    <input className="form-row form-group col-11" id="res-url" placeholder="URL: (source or access to source // ie: Google Books)" required={true}></input>
                     <input className="form-row form-group col-11" id="res-authors" placeholder="Author(s) and/or Contributor(s)"></input>
                     <input className="form-row form-group col-11" id="res-publisher" placeholder="Publisher or Sponsor"></input>
                 </div>

@@ -20,7 +20,7 @@ function TopicsList(){
         }
     }
     function generateTopicsList(){
-        let temp = []
+        let temp = [];
         API.findTopics().then(data => {
             let topics = data.data.sort((a, b) => alphabeticalSort(a.title, b.title));
             topics.forEach(li => {
@@ -38,7 +38,7 @@ function TopicsList(){
 
     useEffect(() => {
         generateTopicsList()
-    }, [topicsData.displayTopicsNav])
+    })
 
     return (<>
         <div className="col-left col-2 border border-danger">
