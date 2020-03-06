@@ -2,30 +2,39 @@ import axios from 'axios';
 
 export default {
     findTopics: () => {
-        return axios.get("api/list/topics");
+        return axios.get("api/topics");
     },
     findThreads: (id) => {
-        return axios.get("api/list/topic/" + id);
+        return axios.get("api/topic/" + id);
     },
     newThread: (data) => {
-        return axios.post("api/list/thread", data);
+        return axios.post("api/thread", data);
     },
     findComments: (id) => {
-        return axios.get("api/list/thread/" + id);
+        return axios.get("api/thread/" + id);
     },
     newComment: (data) => {
-        return axios.post("/api/list/comment", data);
+        return axios.post("/api/comment", data);
     },
     updateComment: (id, data) => {
-        return axios.put("api/list/comment" + id, data)
+        return axios.put("api/comment" + id, data)
     },
     findResources: () => {
-        return axios.get("api/list/resources");
+        return axios.get("api/resources");
     },
     newResource: (data) => {
-        return axios.post("api/list/resources", data);
+        return axios.post("api/resources", data);
     },
     updateResource: (id, data) => {
-        return axios.put("api/list/resources" + id, data)
+        return axios.put("api/resources" + id, data)
+    },
+    login: (data) => {
+        return axios.post("auth/login", data)
+    },
+    logout: () => {
+        return axios.post("auth/logout")
+    },
+    newUser: (data) => {
+        return axios.post("api/users", data)
     }
 }
