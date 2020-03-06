@@ -1,12 +1,14 @@
-// const express = require('express');
 const db = require('../models');
-// const router = express.Router();
+
+// use for debugging req.user
+let x = 'unknown';
 
 module.exports = {
     // render list of topics' links
     findTopics: function (req, res) {
+        console.log(`\ncontroller findTopics: req-user\n${JSON.stringify(req.user) || x}`);
         db.Topics.findAll({}).then(data => {
-            res.json(data);
+           res.json(data);
         });
     },
 
@@ -32,6 +34,7 @@ module.exports = {
 
     // render comments for thread{ where: { thread_id: req.params.id } }
     findComments: function (req, res) {
+        console.log(`\ncontroller findComments: req-user\n${JSON.stringify(req.user) || x}`);
         db.Comments.findAll().then(data => {
             res.json(data);
         });
@@ -40,6 +43,7 @@ module.exports = {
     // post new comment
     newComment: function (req, res) {
         const inputsData = req.body;
+        console.log(`\ncontroller newComment: req-user\n${JSON.stringify(req.user) || x}`);
         db.Comments.create({
             title: inputsData.title,
             stance: inputsData.stance,
