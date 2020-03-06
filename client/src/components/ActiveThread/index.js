@@ -11,8 +11,7 @@ function ActiveThread () {
 
     // API Call to fina all comments for this thread-id
     useEffect(() => {
-        const hrefArray = window.location.href.split("/");
-        const threadID = hrefArray[hrefArray.length-1];
+        const threadID = window.location.href.split("/").pop();
         console.log("thread ID::\n" + threadID);
         API.findComments('1').then(result => {
             let middle = result.data.toString().split(",");
