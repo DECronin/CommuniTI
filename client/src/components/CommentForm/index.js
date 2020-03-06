@@ -21,12 +21,6 @@ function CommentForm() {
         other: '?'
     })
 
-    useEffect(() => {
-        console.log(`setting`);
-        // console.log(JSON.stringify(formData))
-        //reset form?
-    }, [formData]);
-
     function renderResourcesList(data) {
         let displayData = data.map(el => <>
             <li className="single-resource-wrapper" key={data.indexOf(el)}>
