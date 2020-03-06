@@ -84,10 +84,17 @@ const seedTopics = [
     { title: "Constitutional Rights" }
 ];
 
+const testUsers = [{
+    username: 'test1',
+    password: 'test1'
+},{
+    username: 'test2',
+    password: 'test2'
+}]
+
 db.sequelize.sync().then(async () => {
     db.Topics.bulkCreate(seedTopics).then(data => {
-        console.log(data.result + " records inserted!");
-        process.exit(0);
+        console.log(data.result + "TOPICS records inserted!");
     })
         .catch(err => {
             console.error(err);
@@ -101,6 +108,13 @@ db.sequelize.sync().then(async () => {
     //         console.error(err);
     //         process.exit(1);
     //     });
+    db.Users.bulkCreate(testUsers, {individualHooks: true}).then(data => {
+            console.log(JSON.stringify(testUsers) + " USERS records inserted!");
+        })
+            .catch(err => {
+                console.error(err);
+                process.exit(1);
+            })
     // db.Threads.bulkCreate(threadSeeds).then(data => {
     //     console.log(data.result + " records inserted!");
     //     process.exit(0);
