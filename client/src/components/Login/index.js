@@ -7,7 +7,8 @@ function LoginForm(){
     function validate(data){
         console.log("login form\n\n::" + JSON.stringify(data));
         API.login(data).then(result => {
-            window.location.href = '/newtopic';
+            console.log(`>REDIRECT TO USER BIO OR OTHER CENTER FOCUS<\n\nresult data::\n${JSON.stringify(result)}`);
+            // window.location.href = '/newtopic';
         })
     }
     function formObject(e){

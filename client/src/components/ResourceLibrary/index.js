@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import API from '../../utils/API';
 
 function ResourcesList() {
+    const [resList, setRes] = useState({
+        data: []
+    })
+
+    function renderResources(){
+        let temp = [];
+        API.findResources().then(result => {
+            result.data.forEach(el => {
+                temp.push(<li>{JSON.stringify(el)}</li> )
+            });
+            setRes({
+                data: temp
+            })
+        })
+    }
+
+    useEffect(() => {
+        renderResources()
+    }, [])
 
     return (
         <>
             <div>
                 <header> ResourcesList </header>
-                <div> Options </div>
-                <div> Options </div>
-                <div> Options </div>
-                <div> Options </div>
-                <div> Options </div>
-                <div> Options </div>
-                <div> Options </div>
-                <div> Options </div>
-                <footer>
-                    <button>Save</button>
-                </footer>
+                <ul>{resList.data}</ul>
             </div>
         </>)
 }

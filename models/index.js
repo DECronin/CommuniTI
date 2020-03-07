@@ -43,16 +43,19 @@ db.Sequelize = Sequelize;
 
 // db associations
 
-// db.Comments.belongsTo(db.Threads, {foreignKey: "thread_id"});
-// db.Threads.hasMany(db.Comments);
-// db.Comments.hasOne(db.Threads, {foreignKey: "thread_id"});
+// db.Threads.hasMany(db.Commments, {foreignKey: "thread_id"})
+// db.Comments.hasOne(db.Threads);
 
-// db.Topics.belongsToMany( db.Threads, {through: "threadTopics"});
-// db.Threads.belongsToMany(db.Topics, {through: "threadTopics"});
+// db.Topics.belongsToMany( db.Threads, {through: db.ThreadTopics});
+// db.Threads.belongsToMany(db.Topics, {through: db.ThreadTopics});
 
-// db.Users.belongsToMany(db.Comments, {foreignKey: "user_ids"});
-// db.Commments.hasOne(db.User, {foreignKey: "user_id"});
-// db.Resources.belongsToMany(db.Comments);
+
+// db.Users.hasMany(db.Comments, {foreignKey: "user_id"});
+// db.Commments.hasOne(db.User);
+
+// db.Commments.hasMany(db.Resources, {through: db.CommentResources})
+// db.Resources.hasMany(db.Comments, {through: db.CommentResources});
+
 // db.Users.hasMany(db.Session);
 // db.Session.hasOne(db.Users, {foreignKey: "user_id"});
 

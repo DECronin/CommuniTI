@@ -12,9 +12,9 @@ module.exports = {
         });
     },
 
-    // render list of threads from topicId
+    // render list of threads from topicId{ where: { topic_id: req.params.id } }
     findThreads: function (req, res) {
-        db.Threads.findAll({ where: { topic_id: req.params.id } }).then(data => {
+        db.Threads.findAll().then(data => {
             res.json(data);
         });
     },

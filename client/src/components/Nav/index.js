@@ -4,36 +4,30 @@ import {Link} from 'react-router-dom';
 function Nav(){
     // let links;
     // renderLinkOptions(){
-     let links = [<>
+     let links = [<ul>
             <Link to="/">Home / Login</Link>
-        </>,<>
-            <Link to="/newtopic">New Topic</Link>
-        </>,<>
-            <Link to="/topic">Threads List</Link>
-        </>,<>
-            <Link to="/thread">Active Thread</Link>
-        </>,<>
+        </ul>,<ul>
             <Link to="/settings">Settings</Link>
-        </>,<>
+        </ul>,<ul>
             <Link to="/termsofservice">TOS</Link>
-        </>,<>
+        </ul>,<ul>
             <Link to="/user">USER BIO</Link>
-        </>,<>
-            <Link to="/newresource">new resource</Link>
-        </>,<>
-            <Link to="/newthread">new thread</Link>
-        </>,<>
-            <Link to="/newuser">new user</Link>
-        </>,<>
+        </ul>,<ul>
             <Link to="/resources">resources</Link>
-        </>,<>
-            <button>Logout</button>
-        </>]
+        </ul>,<ul>
+            <button>Log{isLoggedIn(true)}</button>
+        </ul>]
     // }
 
+    function isLoggedIn(status){
+        //change with context or api-call
+        return status ? "IN" : "OUT"
+    }
+
     return (<>
+        <p className="row col-12 border border-danger">~/~ {isLoggedIn(false)}
+        {links}</p>
         <h1 className="col-2">NAV</h1>
-        {links}
     </>)
 }
 

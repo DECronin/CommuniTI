@@ -12,7 +12,7 @@ function ActiveThread () {
     // API Call to fina all comments for this thread-id
     useEffect(() => {
         const threadID = window.location.href.split("/").pop();
-        console.log("thread ID::\n" + threadID);
+        console.log("thread ID::    " + threadID);
         API.findComments('1').then(result => {
             let middle = result.data.toString().split(",");
             let obj = (middle[0] === htmlTest) ? {err: 'HTML?'} : result

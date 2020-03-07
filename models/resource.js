@@ -13,18 +13,14 @@ module.exports = (sequelize, DataTypes) => {
         stance: { // 5pt pro to con
             type: DataTypes.STRING,
             unique: false,
-            allowNull: false
+            allowNull: false,
+            defaultValue: "3"
         },
         additional: {
             type: DataTypes.STRING,
             unique: false,
             allowNull: true
         },
-        // reliability: {
-        //     type: DataTypes.INTEGER,
-        //     unique: false,
-        //     allowNull: false
-        // },
         url: {
             type: DataTypes.STRING,
             unique: false,
@@ -36,17 +32,18 @@ module.exports = (sequelize, DataTypes) => {
         publisher: {
             type: DataTypes.STRING,
             unique: false,
-            allowNull: false
+            // allowNull: false
         },
         author: {
             type: DataTypes.STRING,
             unique: false,
-            allowNull: false
+            // allowNull: false
         },
         status: { // recognised, commented, pending, problematic
             type: DataTypes.STRING,
             allowNull: false,
-            unique: false
+            unique: false,
+            defaultValue: 'pending'
         }
     },{underscored: true});
     return Resource;

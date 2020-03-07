@@ -16,7 +16,7 @@ function CenterFocus(){
     return(<><h3>CenterFocus</h3><Switch>
         <Route exact path="/" render={() => <Login />} />
         <Route path="/thread/:id" render={() => <ActiveThread />} />
-        <Route exact path="/topic" render={() => <ListThreadLinks />} />
+        <Route path="/topic/:id" render={() => <ListThreadLinks />} />
         <Route exact path="/newtopic" render={() => <NewTopicForm />} />
         <Route exact path="/newresource" render={() => <NewResourceForm />} />
         <Route exact path="/newthread" render={() => <NewThreadForm />} />

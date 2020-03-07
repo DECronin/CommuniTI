@@ -30,12 +30,12 @@ function TopicsList(){
                 let topics = obj.data.sort((a, b) => alphabeticalSort(a.title, b.title));
                 topics.forEach(li => {
                     temp.push(
-                    <li className="topic-nav" key={li.id.toString()}>
+                    <ul className="topic-nav border border-primary" key={li.id.toString()}>
                         <Link
-                            to={`/topic/{${li.id}}`}
-                            className={window.location.pathname === `/topic/{${li.id}}` ? "nav-link active" : "nav-link"}>
+                            to={`/topic/${li.id}`}
+                            className={window.location.pathname === `/topic/${li.id}` ? "nav-link active" : "nav-link"}>
                         {li.title}</Link>
-                    </li>
+                    </ul>
                 )})
                 setTopics({displayTopicsNav: temp})
             }
@@ -48,11 +48,12 @@ function TopicsList(){
 
     return (<>
         <div className="col-left col-2 border border-danger">
+            <button><Link to="/newtopic">New Topic</Link></button>
+            <button><Link to="/newresource">New Resource</Link></button>
             <header>Topics:</header>
             <ul>
                 {topicsData.displayTopicsNav}
             </ul>
-            <button>Suggest New Topic</button>
         </div>
     </>)
 }

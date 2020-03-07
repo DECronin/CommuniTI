@@ -12,7 +12,7 @@ function NewThreadForm() {
             <h5>New Thread</h5>
             <div className="form-row">
                 <div className="form-group col-9">
-                    <input className="form-row form-group col-12" name="Thread-title" id="Thread-title" placeholder="Title Statement"></input>
+                    <input className="form-row form-group col-12" name="thread-title" id="thread-title" placeholder="Question or Statement Title"></input>
                 </div>
                 <div className="form-group col-3">
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Pro</label>
@@ -21,7 +21,7 @@ function NewThreadForm() {
                 </div>
             </div>
             <div className="form-row">
-                <textarea className="form-group col-12" rows="4" placeholder="Thread..." name="Thread-body" id="Thread-body"></textarea>
+                <textarea className="form-group col-12" rows="4" placeholder="Further Context..." name="thread-body" id="thread-body"></textarea>
             </div>
         <button onClick={e => submitThread(e)}>Submit</button>
         </form>
