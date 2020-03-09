@@ -2,6 +2,9 @@ import React from 'react';
 // import API from '../../utils/API';
 // import $ from 'jquery';, { useState, useEffect } 
 
+// ::::   ALL FORMS  :::: //
+// return loggedIn ? <form> : "Component Not Available"
+
 function NewThreadForm() {
     function submitThread(e){
         console.log("==click==\nSUBMIT NEW THREAD");
