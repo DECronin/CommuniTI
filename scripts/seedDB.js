@@ -98,6 +98,18 @@ const testUsers = [{
 }, {
     username: 'test2',
     password: 'test2'
+}, {
+    username: 'test3',
+    password: 'test3'
+}, {
+    username: 'test4',
+    password: 'test4'
+}, {
+    username: 'test5',
+    password: 'test5'
+}, {
+    username: 'test6',
+    password: 'test6'
 }];
 
 const seedResources = [{
