@@ -8,6 +8,7 @@ function ResourcesList() {
 
     function renderResources(){
         let temp = [];
+        // only pull "aproved" status
         API.findResources().then(result => {
             result.data.forEach(el => {
                 temp.push(<li>{JSON.stringify(el)}</li> )
@@ -16,6 +17,8 @@ function ResourcesList() {
                 data: temp
             })
         })
+
+        // style by on category and sort alphabetically
     }
 
     useEffect(() => {
