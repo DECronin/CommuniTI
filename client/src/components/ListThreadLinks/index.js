@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import NewThreadForm from '../NewThreadForm';
 import API from '../../utils/API';
 
-function ListThreadLinks() {
+function ListThreadLinks({loginData}) {
     const [threadList, setThread] = useState({
         data: []
     })
@@ -14,6 +14,8 @@ function ListThreadLinks() {
         console.log("thread ID::   " + topicID);
         API.findThreads(topicID).then(result => {
             result.data.forEach(el => {
+                // sort by popularity vs date?
+                // fill in more data (ie: ^)
                 temp.push(<ul className="thread-link" key={el.id.toString()}><Link to={`${window.location.pathname}thread/${el.id}`}>{el.title}</Link></ul> )
             });
             setThread({
@@ -25,13 +27,19 @@ function ListThreadLinks() {
     useEffect(() => {
         renderThreadLinks()
     }, [])
+    
+    function renderForm(status){
+        return(
+            status ? <NewThreadForm /> : ''
+        )
+    }
 
     return (
         <>
             <div>
                 <header> ListThreadLinks </header>
                     <ul>{threadList.data}</ul>
-                    <NewThreadForm />
+                    {renderForm(loginData.loggedIn)}
             </div>
         </>)
 }
