@@ -14,7 +14,7 @@ const app = express()
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')))
 
-// Setup session                                                          // Window.localStorage?
+// Setup session                                                    
 const sessionOpts = {
   secret: process.env.SESSION_SECRET,
   cookie: {
