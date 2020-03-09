@@ -15,24 +15,21 @@ function Dashboard() {
     function testLoginStorage(){
         return(myStorage.loggedIn === 'true' ? {
             loggedIn: true,
-            id: myStorage.id
+            id: myStorage.id,
+            username: myStorage.username
         } : {
             loggedIn: false,
-            id: 0
+            id: "X",
+            username: "X"
         })
     }
 
     function updateLogin(data){
         setLogin(data);
-        let temp = window.location.href.split('/');
-        temp.pop()
-        temp.push("user");
-        let newURL = temp.join("/");
-        window.location.href = newURL
     }
 
     useEffect(() => {
-        console.log(`Local storage::{\nloggedIn: ${localStorage.loggedIn || "x"}\nid: ${localStorage.id || "x"}\n }`);
+        console.log(`Local storage::{\nloggedIn: ${localStorage.loggedIn || "x"}\nid: ${localStorage.id || "x"}\nusername:: ${localStorage.username} }`);
     }, [loginData])
 
     return (<>
@@ -40,7 +37,7 @@ function Dashboard() {
             <AuthContext.Provider value={loginData}>
                 <Header loginData={loginData} />
                 <div className="row">
-                    <TopicsList />
+                    <TopicsList loginData={loginData} />
                     <div className="center-focus col-8 border border-primary">
                         <CenterFocus loginData={loginData} updateLogin={updateLogin}/>
                     </div>
