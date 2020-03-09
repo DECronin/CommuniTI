@@ -1,18 +1,3 @@
-// const router = require("express").Router();
-// const userController = require("../../controllers/userControl");
-
-// // Matches with "/auth/:user?"
-// router.route("/login")
-//   .get(userController.findAll)
-// //   .post(userController.create);
-
-// router
-//   .route("/:id")
-//   .get(userController.findById)
-//   .put(userController.update)
-
-//================================================
-
 const router = require('express').Router();
 const passport = require('passport');
 const { checkAuthentication, login, logout } = require('../../controllers/middleControl');
