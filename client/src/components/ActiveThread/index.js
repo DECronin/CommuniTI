@@ -4,7 +4,7 @@ import API from '../../utils/API';
 
 const htmlTest = "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <link rel=\"icon\" href=\"%PUBLIC_URL%/favicon.ico\" />\n    <meta name=\"viewport\" content=\"width=device-width";
 
-function ActiveThread () {
+function ActiveThread ({loginData}) {
     const [displayComments, setDisplay] = useState({
         list: []
     })
@@ -72,12 +72,18 @@ function ActiveThread () {
         });
         setDisplay({...displayComments, list: feed})
     };
-        return(<><ul>
-            {/* first index as prominent */}
-            {displayComments.list}
-            <CommentForm />
-        </ul>
-        </>)
+
+    function renderForm(status){
+        return(
+            status ? <CommentForm /> : ''
+        )
+    }
+
+    return(<><ul>
+        {/* first index as prominent */}
+        {displayComments.list}
+        {renderForm(loginData.loggedIn)}
+    </ul></>)
 }
 
 export default ActiveThread;
