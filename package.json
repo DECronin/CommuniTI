@@ -2,6 +2,9 @@
   "name": "communiti",
   "version": "1.0.0",
   "description": "Communication Trumps Ignorance",
+  "engine": {
+    "node": "12.7.0"
+  },
   "main": "server.js",
   "scripts": {
     "start": "concurrently \"if-env NODE_ENV=production && npm run start:prod || npm run start:dev\"",
