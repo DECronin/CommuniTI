@@ -6,7 +6,6 @@ let x = 'unknown';
 module.exports = {
     // render list of topics' links
     findTopics: function (req, res) {
-        console.log(`\ncontroller findTopics: req-user\n${JSON.stringify(req.user) || x}`);
         db.Topics.findAll({}).then(data => {
            res.json(data);
         });
@@ -22,19 +21,25 @@ module.exports = {
     // post new thread
     newThread(req, res) {
         console.log(`api/thread post req.body::\n${req.body}`);
+        let tempThreadTopics = [];
+        for(i = 0; i < 7; i++){
+            tempThreadTopics[i].topic_id = Math.ceil(Math.random()*45)
+        }
         db.Threads.create({
             title: req.body.title,
             stance: req.body.stance,
             summary: req.body.summary,
             status: 'posted'
         }).then(data => {
-            res.json(data);
+            for(i = 0; i < 7; i++){
+                tempThreadTopics[i].thread_id = data.data.id
+            }
+            db.TopicThreads.bulkCreate(tempThreadTopics).then(joinData => res.json(joinData))
         });
     },
 
     // render comments for thread{ where: { thread_id: req.params.id } }
     findComments: function (req, res) {
-        console.log(`\ncontroller findComments: req-user\n${JSON.stringify(req.user) || x}`);
         db.Comments.findAll().then(data => {
             res.json(data);
         });
@@ -43,13 +48,26 @@ module.exports = {
     // post new comment
     newComment: function (req, res) {
         const inputsData = req.body;
-        console.log(`\ncontroller newComment: req-user\n${JSON.stringify(req.user) || x}`);
         db.Comments.create({
             title: inputsData.title,
             stance: inputsData.stance,
             summary: inputsData.comment,
             status: 'posted'
-        }).then(data => res.json(data));
+        }).then(data => {
+            let tempCommentResources = [];
+            for(i = 0; i < 7; i++){
+                tempCommentResources[i].resource_id = Math.ceil(Math.random()*45);
+                tempCommentResources[i].comment_id = data.data.id
+            }
+            db.tempCommentResources.bulkCreate(tempThreadTopics).then(joinData => {
+                console.log(joinData.result + " C == R records inserted!\n");
+                res.json(joinData)
+            })
+                .catch(err => {
+                    console.error(err);
+                    process.exit(1);
+                });
+        });
     },
 
     // update comment
