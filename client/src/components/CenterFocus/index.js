@@ -15,16 +15,15 @@ import ResourcesList from "../ResourceLibrary";
 function CenterFocus({loginData, updateLogin}){
     return(<><h3>CenterFocus</h3><Switch>
         <Route exact path="/" render={() => loginData.loggedIn ? <UserBio loginData={loginData} /> : <Login updateLogin={updateLogin} />} />
-        <Route exact path="/user" render={() => <UserBio loginData={loginData} />} />
-        <Route path="/thread/:id" render={() => <ActiveThread />} />
-        <Route path="/topic/:id" render={() => <ListThreadLinks />} />
+        <Route path="/thread/:id" render={() => <ActiveThread loginData={loginData} />} />
+        <Route path="/topic/:id" render={() => <ListThreadLinks loginData={loginData} />} />
         <Route exact path="/newtopic" render={() => <NewTopicForm />} />
         <Route exact path="/newresource" render={() => <NewResourceForm />} />
         <Route exact path="/newthread" render={() => <NewThreadForm />} />
         <Route exact path="/newuser" render={() => <NewUserForm />} />
         <Route exact path="/resources" render={() => <ResourcesList />} />
         <Route exact path="/termsofservice" render={() => <TOS />} />
-        <Route exact path="/settings" render={() => <Settings />} />
+        <Route exact path="/settings" render={() => <Settings loginData={loginData} />} />
         </Switch></>)
 }
 
