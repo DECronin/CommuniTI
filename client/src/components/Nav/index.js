@@ -4,23 +4,26 @@ import API from '../../utils/API';
 
 function Nav({loginData}){
 
-    // let links;
     // renderLinkOptions(){
-     let links = [<ul key="logout-button">
-            <button id="user-logout" 
-                onClick={() => logOut()}>{loginData.loggedIn ? "Logout" : "Login"}
-            </button>
-        </ul>,<ul key="settings-nav">
-            <Link to="/settings">Settings</Link>
-        </ul>,<ul key="tos-nav">
-            <Link to="/termsofservice">TOS</Link>
-        </ul>,<ul key="user-bio-nav">
-            <Link to="/user">USER BIO</Link>
-        </ul>,<ul key="resource-nav">
-            <Link to="/resources">resources</Link>
-        </ul>]
+        // let links;
+        let links = [<ul key="settings-nav">
+                <Link to="/settings">Settings</Link>
+            </ul>,<ul key="tos-nav">
+                <Link to="/termsofservice">TOS</Link>
+            </ul>,<ul key="user-bio-nav">
+                <Link to="/">Home | USER BIO</Link>
+            </ul>,<ul key="resource-nav">
+                <Link to="/resources">resources</Link>
+            </ul>];
+        if(loginData.loggedIn){
+            links.push(<ul key="logout-button">
+                <button id="user-logout" 
+                    onClick={() => logOut()}>Logout
+                </button>
+            </ul>)
+        }
+        // return links in bootstrap style
     // }
-    console.log(window.location.href)
 
     function isLoggedIn(status){
         // filler ~/~ change for more fluid use of {loginData}
