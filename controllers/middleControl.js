@@ -7,14 +7,19 @@ exports.checkAuthentication = (req, res, next) => {
 }
 
 exports.login = (req, res) => {
-  console.log(`\n==========\nREQ-USER\n${JSON.stringify(req.user)}\n===========`);
   if (!req.body.remember) {
     // user will need to login again after restart browser
     req.session.cookie.expires = false
   }
+
+  // ???????????
+  req.session.cookie.expires = true
+  req.session.cookie.originalMaxAge = 1000 * 60 * 60 * 24 * 3
+
   let token
   try {
     token = createJWT(req.user)
+    process.env.AUTH_SECRET = token; //?????
     res
       .status(200)
       .cookie('jwt', token, { httpOnly: true })
