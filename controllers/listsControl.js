@@ -1,8 +1,5 @@
 const db = require('../models');
 
-// use for debugging req.user
-let x = 'unknown';
-
 module.exports = {
     // render list of topics' links
     findTopics: function (req, res) {
@@ -119,5 +116,26 @@ module.exports = {
         }).then(data => {
             res.json(data);
         });
+    },
+    findUser: function (req, res) {
+        // res.json({msg: "find user by id"})
+        db.Users
+            .findAll({where: {id: req.params.id}})
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    newUser: function (req, res) {
+        console.log(`================\nCREATing:new\nreq.body::\n${JSON.stringify(req.body)}\n=================`);
+        db.Users
+            .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    updateUser: function (req, res) {
+        console.log(`================\nupdating: ${req.params.id}\nreq.body::\n${JSON.stringify(req.body)}\n=================`);
+        db.Users
+            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
     }
 }
