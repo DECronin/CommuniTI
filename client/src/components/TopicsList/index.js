@@ -36,23 +36,12 @@ function TopicsList({loginData}){
         })
     };
 
-    function buttonDisplay(status){
-        return(
-            status ?
-            <>
-            <button><Link to="/newtopic">New Topic</Link></button>
-            <button><Link to="/newresource">New Resource</Link></button>
-            </> : ''
-        )
-    }
-
     useEffect(() => {
         generateTopicsList()
     })
 
     return (<>
         <div className="col-left col-2 border border-danger">
-            {buttonDisplay(loginData.loggedIn)}
             <header>Topics:</header>
             <ul>
                 {topicsData.displayTopicsNav}
