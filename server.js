@@ -8,6 +8,6 @@ db.sequelize
   .then(() => {
     app.listen(PORT, () => {
       console.log(`API Server now listening on PORT ${PORT}!`)
-    })
+    }, this.address().port, app.settings.env)
   })
   .catch(err => console.log(err))
