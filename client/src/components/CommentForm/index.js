@@ -2,21 +2,14 @@ import React, { useState } from 'react';
 import NewResourceForm from '../NewResourceForm';
 import API from '../../utils/API';
 import $ from 'jquery';
-import BuildFormContext from '../../utils/BuildFormContext';
 
 function CommentForm() {
     const [formData, setForm] = useState({
-        pageFocus: 'comments',
         resourceIndex: 0,
-        dataThreadArray: [],
-        author: '',
-        userId: '',
-        topicID: '',
         threadID: '',
         title: '',
         stance: '',
         comment: '',
-        displayResources: [],
         dataResourceInputs: [],
         other: '?'
     })
@@ -79,7 +72,6 @@ function CommentForm() {
     }
 
     return (<ul className="form-wrapper border border-warning" key="new">
-        <BuildFormContext.Provider value={formData}>
         <form className="needs-validation" noValidate>
             <h5>New Comment</h5>
             <div className="form-row">
@@ -104,7 +96,6 @@ function CommentForm() {
             </div>
         <button onClick={e => submitComment(e)}>Submit</button>
         </form>
-        </BuildFormContext.Provider>
     </ul>)
 }
 
