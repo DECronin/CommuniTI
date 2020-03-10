@@ -51,12 +51,18 @@ module.exports = {
             summary: inputsData.comment,
             status: 'posted'
         }).then(data => {
+            // let arLength = req.body.resources.lenght;
             let tempCommentResources = [];
             for(i = 0; i < 7; i++){
+                // check if url/ect exists in db.Resources
+                // db.Resources.create(req.body.resources[i]).then(resData => {
+                    // tempCommentResources[i].resource_id = resData.data.id;
+                // })
                 tempCommentResources[i].resource_id = Math.ceil(Math.random()*45);
                 tempCommentResources[i].comment_id = data.data.id
             }
-            db.tempCommentResources.bulkCreate(tempThreadTopics).then(joinData => {
+
+            db.CommentResources.bulkCreate(tempCommentResources).then(joinData => {
                 console.log(joinData.result + " C == R records inserted!\n");
                 res.json(joinData)
             })
@@ -80,8 +86,8 @@ module.exports = {
         });
     },
 
-
     // render resources list
+    // by id for comments?
     findResources: function (req, res) {
         db.Resources.findAll({}).then(data => {
             res.json(data);
@@ -106,7 +112,7 @@ module.exports = {
     },
 
     // update resource
-    // report status updated through body?
+    // "report" status updated through body?
     updateResource: function (req, res) {
         console.log(`api/resource update req.body::\n${req.body}`);
         db.Resources.update({}, {
@@ -117,13 +123,16 @@ module.exports = {
             res.json(data);
         });
     },
+
+    // find user by id
     findUser: function (req, res) {
-        // res.json({msg: "find user by id"})
         db.Users
             .findAll({where: {id: req.params.id}})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+
+    // post new user
     newUser: function (req, res) {
         console.log(`================\nCREATing:new\nreq.body::\n${JSON.stringify(req.body)}\n=================`);
         db.Users
@@ -131,6 +140,10 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+
+    
+    // update user
+    // [report, inavtive, additional settings, ect] status updated through body?
     updateUser: function (req, res) {
         console.log(`================\nupdating: ${req.params.id}\nreq.body::\n${JSON.stringify(req.body)}\n=================`);
         db.Users

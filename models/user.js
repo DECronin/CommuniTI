@@ -65,14 +65,5 @@ module.exports = (sequelize, DataTypes) => {
   // This shoudl trigger if individualHooks set to true on Update or Create
   User.beforeSave(hashPasswordIfChanged)
 
-//  Pulled from Dan's Example? // eslint-disable-next-line no-unused-vars
-//   User.associate = function(models) {
-//     User.hasMany(models.Address, { foreignKey: 'userId' })
-//     User.hasMany(models.ChangeRequest, { foreignKey: 'userId' })
-//     User.hasOne(models.PractitionerSearchList, { foreignKey: 'userId' })
-//     User.belongsToMany(models.Enrollments, { through: 'UserEnrollments', foreignKey: 'userId' })
-//     User.hasMany(models.Token, { foreignKey: 'userId' })
-//     User.hasMany(models.Certificate, { foreignKey: 'userId' })
-//   }
-    return User;
+  return User;
 };
