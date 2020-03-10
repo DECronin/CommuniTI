@@ -96,17 +96,7 @@ module.exports = {
 
     // post new resource
     newResource: function (req, res) {
-        console.log(`api/resource post req.body::\n${req.body}`);
-        db.Resources.create({
-            title: req.body.title,
-            stance: req.body.stance,
-            category: '',
-            additional: '',
-            url: '',
-            publisher: '',
-            author: '',
-            status: ''
-        }).then(data => {
+        db.Resources.create(req.body).then(data => {
             res.json(data);
         });
     },
