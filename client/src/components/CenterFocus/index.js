@@ -21,7 +21,7 @@ function CenterFocus({loginData, updateLogin}){
         <Route exact path="/newresource" render={() => <NewResourceForm source="reccomendation" />} />
         <Route exact path="/newthread" render={() => <NewThreadForm />} />
         <Route exact path="/newuser" render={() => <NewUserForm />} />
-        <Route exact path="/resources" render={() => <ResourcesList />} />
+        <Route exact path="/resources" render={() => <ResourcesList loginData={loginData} />} />
         <Route exact path="/termsofservice" render={() => <TOS />} />
         <Route exact path="/settings" render={() => <Settings loginData={loginData} />} />
         </Switch></>)
