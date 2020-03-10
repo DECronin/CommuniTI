@@ -1,5 +1,6 @@
 import React from 'react'; 
 import $ from 'jquery';
+import API from '../../utils/API';
 
 const unknown = "I do not currently know."
 
@@ -9,9 +10,7 @@ function NewResourceForm({ source, formData, setForm }) {
         return (data.title && data.category && data.url) ? true : false
     }
        
-    function formObject(e, updatingData, setForm){//
-        let middleData = updatingData;
-        // test if title and url are included
+    function formObject(e){//
         let resData = {
             title: $('#res-title').val(),
             stance: $('#res-stance').val(),
@@ -22,12 +21,20 @@ function NewResourceForm({ source, formData, setForm }) {
             releaseDate: $('#release-date').val() || unknown,
             additional: $('#additional').val()
         };
+        // test if title and url are included
+        console.log(`\n-----\nsource => ${source}\n-----`);
         if (validate(resData)){
-            middleData.push(resData);
-            setForm({
-                ...formData,
-                dataResourceInputs: middleData
-            })
+            {/* / if source == userComment send to state array for display purposes else send to recommendationPend / */}
+            if(source === 'reccomendation'){
+                console.log(`inputs::\n\n${JSON.stringify(resData)}`)
+            } else {
+                let middleData = formData.dataResourceInputs || [];
+                middleData.push(resData);
+                setForm({
+                    ...formData,
+                    dataResourceInputs: middleData
+                })
+            }
         } else {
             if (resData.title === '') alert("Please Provide a Title for this Resource.")
             if (resData.url === '') alert("Please Provide a URL to Support this Resource.")
@@ -74,23 +81,8 @@ function NewResourceForm({ source, formData, setForm }) {
             <div className="form-row additional-notes">
                 <textarea className="form-group col-11" placeholder="Additional Notes (optional)" rows="2" id="additional"></textarea>
             </div>
-            <button onClick={(e) => formObject(e, formData.dataResourceInputs, setForm)}>Add Resource</button> 
-            {/* / if source == userComment send to state array for display purposes else send to recommendationPend / */}
+            <button onClick={(e) => formObject(e)}>Add Resource</button> 
     </ul>)
 }
 
 export default NewResourceForm
-
-// category
-    // reliability-score/rate (generated from category?)
-// citation
-    // 1 -Author.
-    // 2 -Title of source.
-    // 3 -Title of container,
-    // 4 -Other contributors,
-    // 5 -Version,
-    // 6 -Number,
-    // 7 -Publisher,
-    // 8 -Publication date,
-    // 9 -Location.
-// aditional notes
