@@ -39,6 +39,12 @@ module.exports = (sequelize, DataTypes) => {
             unique: false,
             // allowNull: false
         },
+        source: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: false,
+            defaultValue: 'DB-Model Error'
+        },
         status: { // recognised, commented, pending, problematic
             type: DataTypes.STRING,
             allowNull: false,
