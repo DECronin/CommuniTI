@@ -16,6 +16,7 @@ function NewResourceForm({ source, formData, setForm }) {
             stance: $('#res-stance').val(),
             category: $('#category').val(),
             url: $('#res-url').val(),
+            source: source || "Client-Side Error",
             authors: $('#res-authors').val() || unknown,
             publisher: $('#res-publisher').val() || unknown,
             releaseDate: $('#release-date').val() || unknown,
@@ -26,7 +27,7 @@ function NewResourceForm({ source, formData, setForm }) {
         if (validate(resData)){
             {/* / if source == userComment send to state array for display purposes else send to recommendationPend / */}
             if(source === 'reccomendation'){
-                console.log(`inputs::\n\n${JSON.stringify(resData)}`)
+                API.newResource(resData).then(() => window.location.href = "/#/resources")
             } else {
                 let middleData = formData.dataResourceInputs || [];
                 middleData.push(resData);
