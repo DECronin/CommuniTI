@@ -1,20 +1,32 @@
 import React from 'react'; 
-// import $ from 'jquery';
+import $ from 'jquery';
+// import API from '../../utils/API';
 
 function NewUserForm() {
     // function validate(data){
     //     return () ? true : false
     // }
     function formObject(e){
-        console.log('click')
+        let inputs = {
+            username: $("#new-username").val(),
+            passowrd:  $("#new-password").val(),
+            first_name: $("#new-firstname").val(),
+            last_name: $("#new-lastname").val(),
+            email: $("#new-email").val(),
+            phone: $("#new-phone").val()
+        }
+        console.log('submit click\n' + JSON.stringify(inputs))
         e.preventDefault()
     }
     return (<form className="form-wrapper border border-primary">
             <h6>New User</h6>
-            <input name="username" placeholder="username"></input>
-            <input name="password" placeholder="password"></input>
+            <input name="firstname" id="new-firstname" placeholder="First Name"></input>
+            <input name="lastname" id="new-lastname" placeholder="Last Name"></input>
+            <input name="username" id="new-username" placeholder="username"></input>
+            <input name="password" id="new-password" placeholder="password"></input>
+            <input name="email" id="new-email" placeholder="email"></input>
+            <input name="phone" id="new-phone" placeholder="phone"></input>
             <button onClick={(e) => formObject(e)}>Join</button> 
-            {/* / if source == userComment send to state array for display purposes else send to recommendationPend / */}
     </form>)
 }
 
