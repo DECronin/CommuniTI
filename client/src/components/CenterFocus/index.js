@@ -18,7 +18,7 @@ function CenterFocus({loginData, updateLogin}){
         <Route path="/thread/:id" render={() => <ActiveThread loginData={loginData} />} />
         <Route path="/topic/:id" render={() => <ListThreadLinks loginData={loginData} />} />
         <Route exact path="/newtopic" render={() => <NewTopicForm />} />
-        <Route exact path="/newresource" render={() => <NewResourceForm />} />
+        <Route exact path="/newresource" render={() => <NewResourceForm source="reccomendation" />} />
         <Route exact path="/newthread" render={() => <NewThreadForm />} />
         <Route exact path="/newuser" render={() => <NewUserForm />} />
         <Route exact path="/resources" render={() => <ResourcesList />} />
