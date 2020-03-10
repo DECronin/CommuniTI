@@ -1,15 +1,16 @@
 import React, { useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import API from '../../utils/API';
 
-function ResourcesList() {
+function ResourcesList({loginData}) {
     const [resList, setRes] = useState({
         data: []
     })
 
     function renderResources(){
         let temp = [];
-        // only pull "aproved" status
-        API.findResources().then(result => {
+        // only pull "approved" status
+        API.findResources("approved").then(result => {
             result.data.forEach(el => {
                 temp.push(<li>{JSON.stringify(el)}</li> )
             });
@@ -28,7 +29,7 @@ function ResourcesList() {
     return (
         <>
             <div>
-                <header> ResourcesList </header>
+                <header> ResourcesList {loginData.loggedIn ? <Link to="/newresource">Suggest New Resource</Link> : ''}</header>
                 <ul>{resList.data}</ul>
             </div>
         </>)
