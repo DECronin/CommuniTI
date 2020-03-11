@@ -7,7 +7,8 @@ function NewThreadForm({loginData}) {
 
     const [display, setUp] = useState({
         topics: [],
-        submitted: false
+        submitted: false,
+        navId: ''
     })
     
     function alphabeticalSort(a, b){
@@ -49,7 +50,7 @@ function NewThreadForm({loginData}) {
             title: $("#thread-title").val(),
             stance: $("#thread-stance").val(),
             summary: $("#thread-body").val(),
-            user_id: loginData.id,
+            username: loginData.username,
             topicIDs: []
         }
         $.each($("input[name='topic']:checked"), function(){
@@ -58,8 +59,8 @@ function NewThreadForm({loginData}) {
         if (validate(inputs)){
             API.newThread(inputs).then(result => {
                 // find a way to reload page without buggs
-                console.log(JSON.stringify(result))
-                setUp({...display, submitted: true})
+                setUp({...display, submitted: true, navId: result.data.id});
+                if(display.submitted) window.location.replace(`/#/thread/${display.navId}`);
             })
         } else {
             alert("please privide more data")
