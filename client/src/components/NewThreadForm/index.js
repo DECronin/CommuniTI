@@ -9,20 +9,30 @@ function NewThreadForm({loginData}) {
         topics: []
     })
     
+    function alphabeticalSort(a, b){
+        const maxLength = a.length > b.length ? b.length : a.length;
+        for (let i = 0; i < maxLength;){
+            if (a.charCodeAt(i) === b.charCodeAt(i)){
+                i++
+            } else {
+                return a.charCodeAt(i) - b.charCodeAt(i)
+            }
+        }
+    }
+    
     function generateTopicOptions(){
         API.findTopics().then(result => {
+            let sorted = result.data.sort((a, b) => alphabeticalSort(a.title, b.title));
             let options = []
-            result.data.forEach(topic => {
-                console.log(topic.title)
+            sorted.forEach(topic => {
                 options.push(<>
-                    <div className="form-check">
+                    <div className="form-check col-4">
                         <input className="form-check-input" name="topic" type="checkbox" value={topic.id} id={`checkbox-${topic.id}`} />
                         <label className="form-check-label" for="defaultCheck1">
                         {topic.title}
                         </label>
                     </div>
                 </>)
-                // options.push(topic.title)
             });
             setUp({topics: options})
         }) 
@@ -49,7 +59,7 @@ function NewThreadForm({loginData}) {
         if (validate(inputs)){
             API.newThread(inputs).then(result => {
                 // find a way to reload page without buggs
-                console.log(JSON.stringify(result))
+                console.log(JSON.stringify(result.data))
             })
         } else {
             alert("please privide more data")
@@ -80,7 +90,7 @@ function NewThreadForm({loginData}) {
             <div className="form-row">
                 <textarea className="form-group col-12" rows="4" placeholder="Further Context..." name="thread-body" id="thread-body"></textarea>
             </div>
-            <div>{display.topics}</div>
+            <div className="form-group-topics row"><label className="col-12">Topic(s):</label>{display.topics}</div>
         <button onClick={e => submitThread(e)}>Submit</button>
         </form>
     </ul>)
