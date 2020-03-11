@@ -19,8 +19,8 @@ export default {
     updateComment: (id, data) => {
         return axios.put("/api/comment/" + id, data)
     },
-    findResources: () => {
-        return axios.get("/api/resources");
+    findResources: (key, value) => {
+        return axios.get("/api/resources/" + key + "/" + value);
     },
     newResource: (data) => {
         return axios.post("/api/resources", data);
