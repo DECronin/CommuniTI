@@ -10,8 +10,23 @@ module.exports = {
 
     // render list of threads from topicId{ where: { topic_id: req.params.id } }
     findThreads: function (req, res) {
-        db.Threads.findAll().then(data => {
-            res.json(data);
+        console.log(`id:: ${req.params.id}`);
+
+        db.ThreadTopics.findAll({where: {topic_id: req.params.id}}).then(TTdata => {
+            console.log("TT data => \n" + JSON.stringify(TTdata))
+            if(!TTdata.length){
+                res.json({msg: "no known assosiations yet"})
+            } else {
+                let ids = TTdata.map(x => x.thread_id)
+                console.log(`\n-------------\nthread_id:: ${ids}\n-----------\n`)
+                db.Threads.findAll({where: {id: ids}}).then(data =>{
+                    console.log("TT call => \n" + JSON.stringify(data))
+                    res.json(data)
+                }).catch(err => {
+                    console.error(err);
+                    process.exit(1);
+                });
+            }
         });
     },
 
@@ -46,7 +61,7 @@ module.exports = {
 
     // render comments for thread{ where: { thread_id: req.params.id } }
     findComments: function (req, res) {
-        db.Comments.findAll().then(data => {
+        db.Comments.findAll({where: {thread_id: req.params.id}}).then(data => {
             res.json(data);
         });
     },
