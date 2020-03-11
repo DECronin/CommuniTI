@@ -11,7 +11,7 @@ function ListThreadLinks({loginData}) {
     function renderThreadLinks(){
         let temp = [];
         let topicID = window.location.href.split("/").pop();
-        console.log("thread ID::   " + topicID);
+        console.log("topic ID::   " + topicID);
         API.findThreads(topicID).then(result => {
             result.data.forEach(el => {
                 // sort by popularity vs date?
