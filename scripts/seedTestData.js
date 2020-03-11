@@ -33,19 +33,23 @@ const commentSeeds = [{
 const threadSeeds = [{
     title: "THREAD 1",
     summary: "Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more.",
-    stance: "1"
+    stance: "1",
+    username: 'hi'
 }, {
     title: "THREAD 2",
     summary: "In modern web applications, authentication can take a variety of forms. Traditionally, users log in by providing a username and password.",
-    stance: "1"
+    stance: "1",
+    username: 'hi'
 }, {
     title: "THREAD 3",
     summary: "With the rise of social networking, single sign-on using an OAuth provider such as Facebook or Twitter has become a popular authentication method. Services that expose an API often require token-based credentials to protect access.",
-    stance: "5"
+    stance: "5",
+    username: 'hi'
 }, {
     title: "THREAD 4",
     summary: "Despite the complexities involved in authentication, code does not have to be complicated.",
-    stance: "4"
+    stance: "4",
+    username: 'hi'
 }]
 
 const testUsers = [{
