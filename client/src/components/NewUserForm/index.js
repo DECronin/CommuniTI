@@ -18,8 +18,17 @@ function NewUserForm({updateLogin}) {
         // if (!isNumbers || temp.length !== 10) alert("Please Provide a 10-Digit Phone Number with Valid Numbers");
         // console.log(`phone stuff\n!isNan => ${isNumbers}\nlength => ${temp.length}`)
 
-        // && data.first_name !== '' && data.last_name !== '' && data.email !== '' && temp.lenght === 10 && isNumbers
-        if (data.username !== '' && data.password !== '') {
+        // validate email to not have empty spaces?
+        // replace all " " with "" for now
+
+        // username requirements? (7 characters or longer for now)
+        let splitUsername = data.username.split('');
+        // password requirements? (7 characters or longer for now as well)
+        let splitPassword = data.password.split('');
+
+        // && data.email !== '' && temp.lenght === 10 && isNumbers
+        if (data.username !== '' && data.password !== '' && data.first_name !== '' && data.last_name !== ''
+        && splitUsername.length > 6 && splitPassword.length > 6) {
             // test if api findUser username already exists
             API.findUser("username", data.username).then(result => {
                 if(result.data.length !== 0){
@@ -37,11 +46,11 @@ function NewUserForm({updateLogin}) {
     }
     function formObject(e){
         let inputs = {
-            username: $("#new-username").val(),
+            username: $("#new-username").val().replace(" ", ""),
             password:  $("#new-password").val(),
             first_name: $("#new-firstname").val(),
             last_name: $("#new-lastname").val(),
-            email: $("#new-email").val() || `${$("#new-username").val()}-filler@email.com`,
+            email: $("#new-email").val().replace(" ", "") || `${$("#new-username").val().replace(" ", "")}-filler@email.com`,
             // birthday: '' // validate for users over age of 18?
             // Math.randoms: debugging only => phone cannot be null and must be unique (taking out of form and model for now)
             // phone: $("#new-phone").val() || `311${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}`
@@ -75,8 +84,10 @@ function NewUserForm({updateLogin}) {
     useEffect(() => {
         console.log(`formFlow == ${formFlow.continue}\nuseeffect()`)
         if(formFlow.continue) { if (formFlow.valid){ dbInsert()} else {
-                if (loginData.username === '') alert("Please Provide a Username.")
-                if (loginData.password === '') alert("Please Provide a Password.")
+                let splitUsername = loginData.username.split('');
+                let splitPassword = loginData.password.split('');
+                if (loginData.username === ''|| splitUsername.length < 7) alert("Please Provide a Username with a Minimum of 7 Characters.")
+                if (loginData.password === ''|| splitPassword.length < 7) alert("Please Provide a Password with a Minimum of 7 Characters.")
                 if (loginData.first_name === '' || loginData.last_name === '') alert("Please Provide Your Full Name.")
                 if (loginData.email === '') alert("Please Provide a Valid Email.")
                 setFlow({continue: false, valid: false})
