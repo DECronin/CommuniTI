@@ -20,6 +20,21 @@ module.exports = (sequelize, DataTypes) => {
             unique: false,
             allowNull: false,
             defaultValue: 'posted'
+        }, 
+        thread_id: {
+            type: DataTypes.STRING,
+            unique: false,
+            allowNull: false
+        }, 
+        username: {
+            type: DataTypes.STRING,
+            unique: false,
+            allowNull: false
+        },
+        user_id: {
+            type: DataTypes.STRING,
+            unique: false,
+            allowNull: false
         }
     },{underscored: true});
     return Comment;
