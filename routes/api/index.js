@@ -9,7 +9,7 @@ router.route("/user/:key/:value").get(listControl.findUser)
 router.route("/topics").get(listControl.findTopics)
 router.route("/topic/:id").get(listControl.findThreads)
 router.route("/thread/:id").get(listControl.findComments)
-router.route("/resources").get(listControl.findResources)
+router.route("/resources/:key/:value").get(listControl.findResources)
 
 // User Auth
 // =============
