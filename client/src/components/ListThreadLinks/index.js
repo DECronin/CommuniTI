@@ -4,20 +4,24 @@ import NewThreadForm from '../NewThreadForm';
 import API from '../../utils/API';
 
 function ListThreadLinks({loginData}) {
+    let topicID = window.location.href.split("/").pop();
     const [threadList, setThread] = useState({
         data: []
     })
 
     function renderThreadLinks(){
         let temp = [];
-        let topicID = window.location.href.split("/").pop();
-        console.log("topic ID::   " + topicID);
         API.findThreads(topicID).then(result => {
-            result.data.forEach(el => {
-                // sort by popularity vs date?
-                // fill in more data (ie: ^)
-                temp.push(<ul className="thread-link" key={el.id.toString()}><Link to={`${window.location.pathname}thread/${el.id}`}>{el.title}</Link></ul> )
-            });
+            if (!result.data.length){
+                temp.push(<ul className="thread-link" key="new-thread-nav"><Link to="/newthread">Start a New Thread</Link></ul>)
+            } else {
+                let middle = result.data;
+                middle.forEach(el => {
+                    // sort by popularity vs date?
+                    // fill in more data (ie: ^)
+                    temp.push(<ul className="thread-link" key={el.id.toString()}><Link to={`${window.location.pathname}thread/${el.id}`}>{el.title}</Link></ul> )
+                });
+            }
             setThread({
                 data: temp
             })
@@ -26,7 +30,7 @@ function ListThreadLinks({loginData}) {
 
     useEffect(() => {
         renderThreadLinks()
-    }, [])
+    }, [topicID])
     
     function renderForm(status){
         return(
