@@ -17,25 +17,31 @@ module.exports = {
 
     // post new thread
     newThread(req, res) {
-        console.log(`api/thread post req.body::\n${req.body}`);
-        // db.Threads.create({
-        //     title: req.body.title,
-        //     stance: req.body.stance,
-        //     summary: req.body.summary,
-        //     status: 'posted'
-        // }).then(data => {
-        //     for(i = 0; i < req.body.topicIDs; i++){
-        //         db.TopicThreads.create({
-        //             thread_id: data.id,
-        //             topic_id: req.body.topicIDs[i]
-        //         }).catch(err => {
-        //             console.error(err);
-        //             process.exit(1);
-        //         });
-        //     }
-        //     res.json({msg: 'associations made'})
-        // });
-        res.json({msg: 'debugging'})
+        db.Threads.create({
+            title: req.body.title,
+            stance: req.body.stance,
+            summary: req.body.summary,
+            status: 'posted'
+        }).then(data => {
+            console.log(" thread created \n" + JSON.stringify(data))
+            for(i = 0; i < req.body.topicIDs.length; i++){
+                let TT = {
+                    thread_id: data.id,
+                    topic_id: req.body.topicIDs[i]
+                };
+                console.log(JSON.stringify(TT))
+                db.ThreadTopics.create(TT).then(resTT => {
+                    console.log(`inserted::\n${JSON.stringify({
+                        thread_id: data.id,
+                        topic_id: req.body.topicIDs[i]
+                    })}\nresTT =>>\n${JSON.stringify(resTT)}`)
+                }).catch(err => {
+                    console.error(err);
+                    process.exit(1);
+                });
+            }
+            res.json({msg: 'associations made'})
+        });
     },
 
     // render comments for thread{ where: { thread_id: req.params.id } }
