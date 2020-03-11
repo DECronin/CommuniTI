@@ -25,7 +25,8 @@ button{
   background-color: rgba(255, 238, 191, 0.85);
   border: 4px outset rgb(243, 196, 157);
   color: darkblue;
+  margin: 20px;
 }
-button.link{
-  color: blanchedalmond;
+a{
+  color: darkblue;
 }

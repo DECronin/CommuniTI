@@ -18,7 +18,6 @@ function ActiveThread ({loginData}) {
 
     function apiCall(){
         API.findThreads('singleThread', thread_id).then(thread => {
-            console.log("THEAD DATA\n" + JSON.stringify(thread.data[0]))
             renderQuestion(thread.data[0])
             API.findComments(thread_id).then(result => {
                 console.log(thread_id)
