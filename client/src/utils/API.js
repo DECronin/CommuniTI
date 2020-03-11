@@ -37,8 +37,8 @@ export default {
     newUser: (data) => {
         return axios.post("/api/user", data)
     },
-    findUser: (id) => {
-        return axios.get("/api/user/" + id);
+    findUser: (key, value) => {
+        return axios.get("/api/user/" + key + "/" + value);
     },
     updateUser: (id, data) => {
         return axios.post("/api/user/" + id, data)
