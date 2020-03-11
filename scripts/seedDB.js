@@ -11,7 +11,7 @@ const seedTopics = [
     { title: "Career" },
     { title: "Events" },
     { title: "Geology" },
-    { title: "Gamming" },
+    { title: "Gaming" },
     { title: "Restaurants" },
     { title: "Family" },
     { title: "Travel" },
