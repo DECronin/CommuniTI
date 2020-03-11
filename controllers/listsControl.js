@@ -10,9 +10,17 @@ module.exports = {
 
     // render list of threads from topicId{ where: { topic_id: req.params.id } }
     findThreads: function (req, res) {
-        db.Topics.findAll({where: {id: req.params.id}}).then(topic => {
+        let key = req.params.key;
+        let value = req.params.value;
+        if(key === 'singleThread'){
+            db.Threads.findAll({where: {id: value}}).then(data => {
+                res.send(data)
+            })
+        } else {
+        db.Topics.findAll({where: {id: value}}).then(topic => {
+            console.log(JSON.stringify(topic))
             let topicTitle = topic[0].title;
-            db.ThreadTopics.findAll({where: {topic_id: req.params.id}}).then(TTdata => {
+            db.ThreadTopics.findAll({where: {topic_id: value}}).then(TTdata => {
                 if(!TTdata.length){
                     res.json({msg: "no known assosiations yet"})
                 } else {
@@ -29,7 +37,7 @@ module.exports = {
                     });
                 }
             });
-        })
+        })}
     },
 
     // post new thread
@@ -37,6 +45,7 @@ module.exports = {
         db.Threads.create({
             title: req.body.title,
             stance: req.body.stance,
+            username: req.body.username,
             summary: req.body.summary,
             status: 'posted'
         }).then(data => {
@@ -45,13 +54,12 @@ module.exports = {
                     thread_id: data.id,
                     topic_id: req.body.topicIDs[i]
                 };
-                console.log(JSON.stringify(TT))
                 db.ThreadTopics.create(TT).catch(err => {
                     console.error(err);
                     process.exit(1);
                 });
             }
-            res.json({msg: 'associations made'})
+            res.json({id: data.id})
         });
     },
 
