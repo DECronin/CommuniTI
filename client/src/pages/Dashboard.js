@@ -3,8 +3,9 @@ import Header from "../components/Header";
 import { HashRouter as Router } from "react-router-dom";
 import { AuthContext } from '../utils/AuthContext';
 import TopicsList from "../components/TopicsList";
-import SuggestionsList from "../components/SuggestionsList";
+// import SuggestionsList from "../components/SuggestionsList";
 import CenterFocus from "../components/CenterFocus";
+import Footer from '../components/Footer';
 
 let myStorage = window.localStorage;
 
@@ -36,11 +37,12 @@ function Dashboard() {
                 <Header loginData={loginData} />
                 <div className="row">
                     <TopicsList loginData={loginData} />
-                    <div className="center-focus col-8 border border-primary">
+                    <div className="center-focus col-8">
                         <CenterFocus loginData={loginData} updateLogin={updateLogin}/>
                     </div>
-                    <SuggestionsList />
+                    <div className="col-right col-2">{/* <SuggestionsList /> */}</div>
                 </div>
+                <Footer />
                 {/* <Route 404 page />*/}
             </AuthContext.Provider>
         </div></Router>

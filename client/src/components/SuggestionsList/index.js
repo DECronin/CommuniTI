@@ -2,7 +2,6 @@ import React from 'react';
 
 function SuggestionsList(){
     return(<>
-        <div className="col-right col-2 border border-danger">
             <header>SuggestionsList</header>
             <ul>
                 <li key="1">1</li>
@@ -15,7 +14,6 @@ function SuggestionsList(){
                 <li key="8">1</li>
                 <li key="9">1</li>
             </ul>
-        </div>
     </>)
 }
 

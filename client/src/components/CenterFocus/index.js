@@ -13,7 +13,7 @@ import ResourcesList from "../ResourceLibrary";
 // import NewTopicForm from "../NewTopicForm";
 
 function CenterFocus({loginData, updateLogin}){
-    return(<><h3>CenterFocus</h3><Switch>
+    return(<><Switch>
         <Route exact path="/" render={() => loginData.loggedIn ? <UserBio loginData={loginData} /> : <Login updateLogin={updateLogin} />} />
         <Route path="/thread/:id" render={() => <ActiveThread loginData={loginData} />} />
         <Route path="/topic/:id" render={() => <ListThreadLinks loginData={loginData} />} />

@@ -38,7 +38,7 @@ function ActiveThread ({loginData}) {
                         <div className="author col-7">{question.author}</div>
                         <div className="updated-date col-4">{question.updateDate}</div>
                         {/* / if user === logedin user then "edit or delete" button / */}
-                        <button className="report-button">Report</button>
+                        {/* <button className="report-button">Report</button> */}
                     </div>
                     <div className="question-resources row">
                         <ul key={`res-${question.id}`}>
@@ -60,7 +60,7 @@ function ActiveThread ({loginData}) {
                             <div className="author col-7">{el.author}</div>
                             <div className="updated-date col-4">{el.updateDate}</div>
                             {/* / if user === logedin user then "edit or delete" button / */}
-                            <button className="report-button">Report</button>
+                            {/* <button className="report-button">Report</button> */}
                         </div>
                         <div className="comment-resources row">
                             <ul key={`res-${el.id}`}>

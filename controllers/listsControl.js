@@ -10,17 +10,12 @@ module.exports = {
 
     // render list of threads from topicId{ where: { topic_id: req.params.id } }
     findThreads: function (req, res) {
-        console.log(`id:: ${req.params.id}`);
-
         db.ThreadTopics.findAll({where: {topic_id: req.params.id}}).then(TTdata => {
-            console.log("TT data => \n" + JSON.stringify(TTdata))
             if(!TTdata.length){
                 res.json({msg: "no known assosiations yet"})
             } else {
                 let ids = TTdata.map(x => x.thread_id)
-                console.log(`\n-------------\nthread_id:: ${ids}\n-----------\n`)
                 db.Threads.findAll({where: {id: ids}}).then(data =>{
-                    console.log("TT call => \n" + JSON.stringify(data))
                     res.json(data)
                 }).catch(err => {
                     console.error(err);
@@ -38,19 +33,13 @@ module.exports = {
             summary: req.body.summary,
             status: 'posted'
         }).then(data => {
-            console.log(" thread created \n" + JSON.stringify(data))
             for(i = 0; i < req.body.topicIDs.length; i++){
                 let TT = {
                     thread_id: data.id,
                     topic_id: req.body.topicIDs[i]
                 };
                 console.log(JSON.stringify(TT))
-                db.ThreadTopics.create(TT).then(resTT => {
-                    console.log(`inserted::\n${JSON.stringify({
-                        thread_id: data.id,
-                        topic_id: req.body.topicIDs[i]
-                    })}\nresTT =>>\n${JSON.stringify(resTT)}`)
-                }).catch(err => {
+                db.ThreadTopics.create(TT).catch(err => {
                     console.error(err);
                     process.exit(1);
                 });
@@ -128,7 +117,6 @@ module.exports = {
     // render resources list
     // params: key and value for source: admin vs comment_resources
     findResources: function (req, res) {
-        console.log(req.params.key + " :: " + req.params.value);
         let key = req.params.key;
         let value = req.params.value;
         if(key === "comment_id"){
