@@ -47,29 +47,46 @@ module.exports = {
         const inputsData = req.body;
         db.Comments.create({
             title: inputsData.title,
-            stance: inputsData.stance,
+            stance: inputsData.stance || 3,
             summary: inputsData.comment,
+            username: inputsData.username,
+            thread_id: inputsData.thread_id,
+            user_id: inputsData.user_id,
             status: 'posted'
-        }).then(data => {
-            // let arLength = req.body.resources.lenght;
-            let tempCommentResources = [];
-            for(i = 0; i < 7; i++){
-                // check if url/ect exists in db.Resources
-                // db.Resources.create(req.body.resources[i]).then(resData => {
-                    // tempCommentResources[i].resource_id = resData.data.id;
-                // })
-                tempCommentResources[i].resource_id = Math.ceil(Math.random()*45);
-                tempCommentResources[i].comment_id = data.data.id
+        }).then(comData => {
+            if (inputsData.dataResourceInputs){
+                for(i = 0; i < inputsData.dataResourceInputs.length; i++){
+                    let resource = inputsData.dataResourceInputs[i];
+                    // check if url exists in db.Resources
+                    db.Resources.findAll({where: {url: resource.url}}).then(resData => {
+                        if(!resData.length){
+                            db.Resources.create(resource).then(result => {
+                                db.CommentResources.create({
+                                    resource_id: result.id,
+                                    comment_id: comData.id
+                                }).then(joinData => {
+                                    res.json(joinData)
+                                }).catch(err => {
+                                        console.error(err);
+                                        process.exit(1);
+                                    });
+                            })
+                        } else {
+                            db.CommentResources.create({
+                                resource_id: resData[0].id,
+                                comment_id: comData.id
+                            }).then(joinData => {
+                                res.json(joinData)
+                            }).catch(err => {
+                                    console.error(err);
+                                    process.exit(1);
+                                });
+                        }
+                    })
+                }
+            } else {
+                res.json({msg: 'error - no resources to support comment'})
             }
-
-            db.CommentResources.bulkCreate(tempCommentResources).then(joinData => {
-                console.log(joinData.result + " C == R records inserted!\n");
-                res.json(joinData)
-            })
-                .catch(err => {
-                    console.error(err);
-                    process.exit(1);
-                });
         });
     },
 
@@ -116,8 +133,11 @@ module.exports = {
 
     // find user by id
     findUser: function (req, res) {
+        let key = req.params.key;
+        let value = req.params.value;
+        console.log(`----------\nkey:: ${key}\nvalue:: ${value}\n--------`)
         db.Users
-            .findAll({where: {id: req.params.id}})
+            .findAll({where: {[key]: value}})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
