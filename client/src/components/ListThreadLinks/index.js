@@ -30,7 +30,7 @@ function ListThreadLinks({loginData}) {
     
     function renderForm(status){
         return(
-            status ? <NewThreadForm /> : ''
+            status ? <NewThreadForm loginData={loginData} /> : ''
         )
     }
 
