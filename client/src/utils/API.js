@@ -4,8 +4,8 @@ export default {
     findTopics: () => {
         return axios.get("/api/topics");
     },
-    findThreads: (id) => {
-        return axios.get("/api/topic/" + id);
+    findThreads: (key, value) => {
+        return axios.get("/api/topic/" + key + "/" + value);
     },
     newThread: (data) => {
         return axios.post("/api/thread", data);
