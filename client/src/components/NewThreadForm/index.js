@@ -6,7 +6,8 @@ import $ from 'jquery';
 function NewThreadForm({loginData}) {
 
     const [display, setUp] = useState({
-        topics: []
+        topics: [],
+        submitted: false
     })
     
     function alphabeticalSort(a, b){
@@ -28,13 +29,13 @@ function NewThreadForm({loginData}) {
                 options.push(<>
                     <div className="form-check col-4">
                         <input className="form-check-input" name="topic" type="checkbox" value={topic.id} id={`checkbox-${topic.id}`} />
-                        <label className="form-check-label" for="defaultCheck1">
+                        <label className="form-check-label" htmlFor="defaultCheck1">
                         {topic.title}
                         </label>
                     </div>
                 </>)
             });
-            setUp({topics: options})
+            setUp({... display, topics: options})
         }) 
     }
 
@@ -60,6 +61,7 @@ function NewThreadForm({loginData}) {
             API.newThread(inputs).then(result => {
                 // find a way to reload page without buggs
                 console.log(JSON.stringify(result.data))
+                setUp({...display, submitted: true})
             })
         } else {
             alert("please privide more data")
