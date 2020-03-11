@@ -25,7 +25,7 @@ function NewResourceForm({ source, formData, setForm }) {
         // test if title and url are included
         console.log(`\n-----\nsource => ${source}\n-----`);
         if (validate(resData)){
-            {/* / if source == userComment send to state array for display purposes else send to recommendationPend / */}
+            // if source == userComment send to state array for display purposes else send to recommendationPend
             if(source === 'reccomendation'){
                 API.newResource(resData).then(() => window.location.href = "/#/resources")
             } else {
