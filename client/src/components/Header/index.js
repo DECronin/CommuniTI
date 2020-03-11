@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {FaSignOutAlt} from 'react-icons/fa'
 import API from '../../utils/API';
 
 import Nav from "../Nav";
@@ -12,13 +13,13 @@ function Header({loginData}){
         })
     }
     return (<>
-        <div className="top-header row border border-success flex justify-content-center">
+        <div className="top-header row flex justify-content-center">
             <Nav loginData={loginData} />
-            <header className="col-8 justify-content-center"><h1>HEADER</h1></header>
+            <header className="col-8 d-flex justify-content-center"><h1>Communication Trumps Ignorance</h1></header>
             <div className="col-2">
-                <Link to="/resources">resources</Link>{loginData.loggedIn ? 
+                <Link id="resources-link" to="/resources">resources</Link>{loginData.loggedIn ? 
                 <button id="user-logout" 
-                    onClick={() => logOut()}>Logout
+                    onClick={() => logOut()}><FaSignOutAlt /> Logout
                 </button> : ''}
             </div>
             {/* <input className="col-2" placeholder="Search"/> */}
