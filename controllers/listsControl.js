@@ -18,21 +18,24 @@ module.exports = {
     // post new thread
     newThread(req, res) {
         console.log(`api/thread post req.body::\n${req.body}`);
-        let tempThreadTopics = [];
-        for(i = 0; i < 7; i++){
-            tempThreadTopics[i].topic_id = Math.ceil(Math.random()*45)
-        }
-        db.Threads.create({
-            title: req.body.title,
-            stance: req.body.stance,
-            summary: req.body.summary,
-            status: 'posted'
-        }).then(data => {
-            for(i = 0; i < 7; i++){
-                tempThreadTopics[i].thread_id = data.data.id
-            }
-            db.TopicThreads.bulkCreate(tempThreadTopics).then(joinData => res.json(joinData))
-        });
+        // db.Threads.create({
+        //     title: req.body.title,
+        //     stance: req.body.stance,
+        //     summary: req.body.summary,
+        //     status: 'posted'
+        // }).then(data => {
+        //     for(i = 0; i < req.body.topicIDs; i++){
+        //         db.TopicThreads.create({
+        //             thread_id: data.id,
+        //             topic_id: req.body.topicIDs[i]
+        //         }).catch(err => {
+        //             console.error(err);
+        //             process.exit(1);
+        //         });
+        //     }
+        //     res.json({msg: 'associations made'})
+        // });
+        res.json({msg: 'debugging'})
     },
 
     // render comments for thread{ where: { thread_id: req.params.id } }
@@ -64,8 +67,6 @@ module.exports = {
                                 db.CommentResources.create({
                                     resource_id: result.id,
                                     comment_id: comData.id
-                                }).then(joinData => {
-                                    res.json(joinData)
                                 }).catch(err => {
                                         console.error(err);
                                         process.exit(1);
@@ -75,8 +76,6 @@ module.exports = {
                             db.CommentResources.create({
                                 resource_id: resData[0].id,
                                 comment_id: comData.id
-                            }).then(joinData => {
-                                res.json(joinData)
                             }).catch(err => {
                                     console.error(err);
                                     process.exit(1);
@@ -84,14 +83,16 @@ module.exports = {
                         }
                     })
                 }
+                res.json({msg: 'associations made'})
             } else {
                 res.json({msg: 'error - no resources to support comment'})
             }
         });
     },
 
+    // ALL_UPDATES and NEW_TOPIC ARE FOR FUTURE DEVELOPMENT
     // update comment
-    // report status updated through body?
+    // "report" status updated through body?
     updateComment: function (req, res) {
         console.log(`api/comment update req.body::\n${req.body}`);
         db.Comments.update({}, {
@@ -104,7 +105,7 @@ module.exports = {
     },
 
     // render resources list
-    // by id for comments?
+    // params: key and value for source: admin vs comment_resources
     findResources: function (req, res) {
         db.Resources.findAll({}).then(data => {
             res.json(data);
