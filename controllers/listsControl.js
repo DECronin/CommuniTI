@@ -128,9 +128,22 @@ module.exports = {
     // render resources list
     // params: key and value for source: admin vs comment_resources
     findResources: function (req, res) {
-        db.Resources.findAll({}).then(data => {
-            res.json(data);
-        });
+        console.log(req.params.key + " :: " + req.params.value);
+        let key = req.params.key;
+        let value = req.params.value;
+        if(key === "comment_id"){
+            db.CommentResources.findAll({where: {[key]: value}}).then(CRdata => {
+                let CR = CRdata.map(x => x.resource_id);
+                db.Resources.findAll({where: {id: [CR]}}).then(data => {
+                    res.json(data)
+                })
+            })
+        } else {
+            res.json({msg: 'which page are you coming from?'})
+        }
+        // db.Resources.findAll({where: {[key]: value}}).then(data => {
+        //     res.json(data);
+        // });
     },
 
     // post new resource
