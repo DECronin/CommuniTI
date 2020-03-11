@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 
-function TopicsList(){
+function TopicsList({loginData}){
     const [topicsData, setTopics] = useState({
         displayTopicsNav: []
     })
@@ -42,6 +42,7 @@ function TopicsList(){
 
     return (<>
         <div className="col-left col-2 border border-danger">
+            {loginData.loggedIn ? <button><Link to="/newthread">New Thread</Link></button> : ''}
             <header>Topics:</header>
             <ul>
                 {topicsData.displayTopicsNav}

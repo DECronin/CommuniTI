@@ -37,7 +37,7 @@ function Dashboard() {
             <AuthContext.Provider value={loginData}>
                 <Header loginData={loginData} />
                 <div className="row">
-                    <TopicsList />
+                    <TopicsList loginData={loginData} />
                     <div className="center-focus col-8 border border-primary">
                         <CenterFocus loginData={loginData} updateLogin={updateLogin}/>
                     </div>
