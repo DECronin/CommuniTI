@@ -4,7 +4,7 @@ const listControl = require("../../controllers/listsControl");
 // Public
 // =============
 // FIND
-router.route("/user/:id").get(listControl.findUser)
+router.route("/user/:key/:value").get(listControl.findUser)
 // (List)
 router.route("/topics").get(listControl.findTopics)
 router.route("/topic/:id").get(listControl.findThreads)
