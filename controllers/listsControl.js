@@ -139,11 +139,10 @@ module.exports = {
                 })
             })
         } else {
-            res.json({msg: 'which page are you coming from?'})
+            db.Resources.findAll({where: {[key]: value}}).then(data => {
+                res.json(data);
+            });
         }
-        // db.Resources.findAll({where: {[key]: value}}).then(data => {
-        //     res.json(data);
-        // });
     },
 
     // post new resource
