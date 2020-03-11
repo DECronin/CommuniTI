@@ -40,7 +40,7 @@ function NewThreadForm({loginData}) {
     }
 
     function validate(data){
-        return (data.title === '' || data.summary === '' || !data.topics.length) ? false : true
+        return (data.title === '' || data.summary === '' || !data.topicIDs.length) ? false : true
     }
 
     function submitThread(e){
@@ -58,7 +58,7 @@ function NewThreadForm({loginData}) {
         if (validate(inputs)){
             API.newThread(inputs).then(result => {
                 // find a way to reload page without buggs
-                console.log(JSON.stringify(result.data))
+                console.log(JSON.stringify(result))
                 setUp({...display, submitted: true})
             })
         } else {
