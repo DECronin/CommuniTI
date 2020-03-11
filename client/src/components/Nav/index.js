@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import API from '../../utils/API';
+// import API from '../../utils/API';
+import {FaHome, FaUserCircle} from 'react-icons/fa'
 
 function Nav({ loginData }) {
 
@@ -28,14 +29,14 @@ function Nav({ loginData }) {
     // return links in bootstrap style
     // }
 
-    function isLoggedIn(status) {
-        // filler ~/~ change for more fluid use of {loginData}
-        if (status) {
-            return (<Link to="/">Home | Welcome</Link>)
-        } else {
-            return (<Link to="/">Home | Login</Link>)
-        }
-    }
+    // function isLoggedIn(status) {
+    //     // filler ~/~ change for more fluid use of {loginData}
+    //     if (status) {
+    //         return (<Link to="/"><FaUserCircle /></Link>)
+    //     } else {
+    //         return (<Link to="/">Home | Login</Link>)
+    //     }
+    // }
 
     // Moved To Header for Now
     // function logOut(){
@@ -46,7 +47,7 @@ function Nav({ loginData }) {
     // }
 
     return (<>
-        <h1 className="col-2">{isLoggedIn(loginData.loggedIn)}</h1>
+        <h1 className="col-2 d-flex justify-content-center"><Link to="/">{loginData.loggedIn ? <FaUserCircle size="65px" /> : <FaHome size="65px" />}</Link></h1>
     </>)
 }
 

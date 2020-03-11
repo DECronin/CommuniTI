@@ -24,7 +24,7 @@ function TopicsList({loginData}){
                 let topics = result.data.sort((a, b) => alphabeticalSort(a.title, b.title));
                 topics.forEach(li => {
                     temp.push(
-                    <ul className="topic-nav border border-primary" key={li.id.toString()}>
+                    <ul className="topic-nav" key={li.id.toString()}>
                         <Link
                             to={`/topic/${li.id}`}
                             className={window.location.pathname === `/topic/${li.id}` ? "nav-link active" : "nav-link"}>
@@ -41,7 +41,7 @@ function TopicsList({loginData}){
     })
 
     return (<>
-        <div className="col-left col-2 border border-danger">
+        <div className="col-left col-2">
             {loginData.loggedIn ? <button><Link to="/newthread">New Thread</Link></button> : ''}
             <header>Topics:</header>
             <ul>
