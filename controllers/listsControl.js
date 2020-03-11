@@ -166,7 +166,6 @@ module.exports = {
 
     // post new user
     newUser: function (req, res) {
-        console.log(`================\nCREATing:new\nreq.body::\n${JSON.stringify(req.body)}\n=================`);
         db.Users
             .create(req.body)
             .then(dbModel => res.json(dbModel))
