@@ -13,7 +13,7 @@ function ListThreadLinks({loginData}) {
     function renderThreadLinks(){
         let temp = [];
         API.findThreads(topicID).then(result => {
-            if (!result.data.data.length){
+            if (!result.data.data){
                 temp.push(<ul className="thread-link" key="new-thread-nav"><Link to="/newthread">Start a New Thread</Link></ul>)
             } else {
                 let middle = result.data.data;
