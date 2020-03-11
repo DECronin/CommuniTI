@@ -1,32 +1,106 @@
-import React from 'react'; 
+import React, {useState, useEffect} from 'react'; 
 import $ from 'jquery';
-// import API from '../../utils/API';
+import API from '../../utils/API';
 
-function NewUserForm() {
-    // function validate(data){
-    //     return () ? true : false
-    // }
+function NewUserForm({updateLogin}) {
+    const [formFlow, setFlow] = useState({continue: false, valid: false})
+    const [loginData, setInputs] = useState({})
+
+    function validate(data){
+        // validating if apropriate phone number
+        // let temp = data.phone.split('');
+        // let isNumbers = true;
+        // let i = 0;
+        // while(isNumbers && i < temp.length){
+        //     isNumbers = !isNaN(temp[i])
+        //     i++
+        // }
+        // if (!isNumbers || temp.length !== 10) alert("Please Provide a 10-Digit Phone Number with Valid Numbers");
+        // console.log(`phone stuff\n!isNan => ${isNumbers}\nlength => ${temp.length}`)
+
+        // && data.first_name !== '' && data.last_name !== '' && data.email !== '' && temp.lenght === 10 && isNumbers
+        if (data.username !== '' && data.password !== '') {
+            // test if api findUser username already exists
+            API.findUser("username", data.username).then(result => {
+                if(result.data.length !== 0){
+                    alert(`Username ${data.username} Already Exists.\nPlease Provide an Alternative.`);
+                    setFlow({continue: true, valid: false})
+                } else{ 
+                    setFlow({continue: true, valid: true})
+                }
+            }).catch(function (error) {
+                console.log(error.response);
+            })
+        } else { 
+            setFlow({continue: true, valid: false})
+        }
+    }
     function formObject(e){
         let inputs = {
             username: $("#new-username").val(),
-            passowrd:  $("#new-password").val(),
+            password:  $("#new-password").val(),
             first_name: $("#new-firstname").val(),
             last_name: $("#new-lastname").val(),
-            email: $("#new-email").val(),
-            phone: $("#new-phone").val()
+            email: $("#new-email").val() || `${$("#new-username").val()}-filler@email.com`,
+            // birthday: '' // validate for users over age of 18?
+            // Math.randoms: debugging only => phone cannot be null and must be unique (taking out of form and model for now)
+            // phone: $("#new-phone").val() || `311${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}${Math.floor(Math.random()*10)}`
         }
-        console.log('submit click\n' + JSON.stringify(inputs))
+        setInputs(inputs)
+        validate(inputs)
         e.preventDefault()
     }
+
+    function dbInsert(){
+        console.log(JSON.stringify(loginData))
+        API.newUser(loginData).then(API.login({
+            username: loginData.username,
+            password: loginData.password
+        }).then((result) => {
+            console.log(JSON.stringify(result));
+            localStorage.setItem('id', result.data.id);
+            localStorage.setItem('loggedIn', 'true')
+            localStorage.setItem('username', loginData.username)
+            updateLogin({
+                loggedIn: true,
+                id: result.data.id,
+                username: loginData.username
+            })
+            window.location.href = "/"
+        })).catch(function (error) {
+            console.log(error.response);
+            });
+    }
+
+    useEffect(() => {
+        console.log(`formFlow == ${formFlow.continue}\nuseeffect()`)
+        if(formFlow.continue) { if (formFlow.valid){ dbInsert()} else {
+                if (loginData.username === '') alert("Please Provide a Username.")
+                if (loginData.password === '') alert("Please Provide a Password.")
+                if (loginData.first_name === '' || loginData.last_name === '') alert("Please Provide Your Full Name.")
+                if (loginData.email === '') alert("Please Provide a Valid Email.")
+                setFlow({continue: false, valid: false})
+            }}
+    }, [formFlow.continue])
+    
     return (<form className="form-wrapper border border-primary">
             <h6>New User</h6>
-            <input name="firstname" id="new-firstname" placeholder="First Name"></input>
-            <input name="lastname" id="new-lastname" placeholder="Last Name"></input>
-            <input name="username" id="new-username" placeholder="username"></input>
-            <input name="password" id="new-password" placeholder="password"></input>
-            <input name="email" id="new-email" placeholder="email"></input>
-            <input name="phone" id="new-phone" placeholder="phone"></input>
-            <button onClick={(e) => formObject(e)}>Join</button> 
+            <div className="form-row form-group">
+                <label className="col-1">Name:</label>
+                <input className="col-5" name="firstname" id="new-firstname" placeholder="First"></input>
+                <input className="col-5" name="lastname" id="new-lastname" placeholder="Last"></input>
+            </div>
+            <div className="form-row form-group">
+                <input className="col-6" name="username" id="new-username" placeholder="username"></input>
+                <input className="col-6" name="password" id="new-password" placeholder="password"></input>
+            </div>
+            {/* <input className="form-row" name="phone" id="new-phone" placeholder="phone"></input> */}
+            {/* <input>birthday</input> */}
+            <div className="form-row">
+                <input className="col-9" name="email" id="new-email" placeholder="email"></input>
+                <button className="col-2" onClick={(e) => formObject(e)}>Join</button>
+            </div>
+            
     </form>)
 }
 
@@ -39,7 +113,8 @@ export default NewUserForm
 // last name
 // password
 // email
-// birthday (age math validate js)
+
+// birthday (age math validate js) !!!!!!!!!!!!!!!!!!! (to add in future developement)
 
 // Optional
 //=========
