@@ -3,15 +3,16 @@ import NewResourceForm from '../NewResourceForm';
 import API from '../../utils/API';
 import $ from 'jquery';
 
-function CommentForm() {
+function CommentForm({loginData, thread_id}) {
     const [formData, setForm] = useState({
         resourceIndex: 0,
-        threadID: '',
+        thread_id: thread_id,
+        user_id: loginData.id,
+        username: loginData.username,
         title: '',
         stance: '',
         comment: '',
-        dataResourceInputs: [],
-        other: '?'
+        dataResourceInputs: []
     })
 
     function renderResourcesList(data) {
@@ -40,12 +41,12 @@ function CommentForm() {
     };
 
     function validate(data){
-        // && formData.dataResourceInputs.length >= 1
-        return (data.title !== '' && data.comment !== '') ? true : false
+        console.log(`validation::\n${JSON.stringify(formData.dataResourceInputs)}`)
+        return (data.title !== '' && data.comment !== '' && formData.dataResourceInputs) ? true : false
+        // return false
     }
 
     function submitComment(e){
-        // test if valid -- title, min 1 resource and comment
         let inputs = {
             title: $("#comment-title").val(),
             stance: $("#res-stance").val(),
@@ -57,12 +58,11 @@ function CommentForm() {
                 stance: inputs.stance,
                 comment: inputs.comment
             })
-            console.log("submit click ==::==\n" + JSON.stringify(formData));
-            API.newComment({...formData, // in controller populate comment with associated resources from context
-                title: $("#comment-title").val(),
-                stance: $("#comment-stance").val(),
-                comment: $("#comment-body").val()
-            }).then(window.location.reload());
+            API.newComment({...formData,
+                title: inputs.title,
+                stance: inputs.stance,
+                comment: inputs.comment
+            }).then(result => console.log("\n----------\napi - new Comment\n...\n" + JSON.stringify(result)));
         } else {
             if (inputs.title === '') alert("Please Provide a Title for this Comment.")
             if (inputs.comment === '') alert("Please Provide Context to this Comment.")
@@ -79,9 +79,12 @@ function CommentForm() {
                     <input className="form-row form-group col-12" name="comment-title" id="comment-title" placeholder="Title Statement" required={true}></input>
                 </div>
                 <div className="form-group col-3">
+                    <label className="form-row col-12">View:</label>
+                    <div className="form-row">
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Pro</label>
                         <input type="range" className="form-group col-6" id="comment-stance" min="1" max="5" defaultValue="3" />
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Con</label>
+                    </div>
                 </div>
             </div>
             <div className="form-row">
