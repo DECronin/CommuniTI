@@ -12,15 +12,15 @@ function ListThreadLinks({loginData}) {
 
     function renderThreadLinks(){
         let temp = [];
-        API.findThreads(topicID).then(result => {
+        API.findThreads('allThreads', topicID).then(result => {
             if (!result.data.data){
-                temp.push(<ul className="thread-link" key="new-thread-nav"><Link to="/newthread">Start a New Thread</Link></ul>)
+                temp.push(<ul className="thread-link row col-12" key="new-thread-nav"><Link to="/newthread">Start a New Thread</Link></ul>)
             } else {
                 let middle = result.data.data;
                 middle.forEach(el => {
                     // sort by popularity vs date?
                     // fill in more data (ie: ^)
-                    temp.push(<ul className="thread-link" key={el.id.toString()}><Link to={`${window.location.pathname}thread/${el.id}`}>{el.title}</Link></ul> )
+                    temp.push(<ul className="thread-link row col-12" key={el.id.toString()}><Link to={`${window.location.pathname}thread/${el.id}`}>{el.title}</Link></ul> )
                 });
             }
             setThread({

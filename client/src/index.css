@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(174, 243, 205);
 }
 
 code {
@@ -12,3 +13,19 @@ code {
     monospace;
 }
 
+/* Styling Actual App Components */
+.center-focus{
+  padding: 15px;
+  background-color: rgba(255, 238, 191, 0.85);
+  border: 4px outset rgb(243, 196, 157);
+  height: fit-content;
+}
+
+button{
+  background-color: rgba(255, 238, 191, 0.85);
+  border: 4px outset rgb(243, 196, 157);
+  color: darkblue;
+}
+button.link{
+  color: blanchedalmond;
+}
