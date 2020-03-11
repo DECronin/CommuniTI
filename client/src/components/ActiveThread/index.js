@@ -8,11 +8,11 @@ function ActiveThread ({loginData}) {
     const [displayComments, setDisplay] = useState({
         list: []
     })
+    const thread_id = window.location.href.split("/").pop();
 
     // API Call to fina all comments for this thread-id
     useEffect(() => {
-        const threadID = window.location.href.split("/").pop();
-        console.log("thread ID::    " + threadID);
+        console.log("thread ID::    " + thread_id);
         API.findComments('1').then(result => {
             let middle = result.data.toString().split(",");
             let obj = (middle[0] === htmlTest) ? {err: 'HTML?'} : result
@@ -75,7 +75,7 @@ function ActiveThread ({loginData}) {
 
     function renderForm(status){
         return(
-            status ? <CommentForm /> : ''
+            status ? <CommentForm loginData={loginData} thread_id={thread_id} /> : ''
         )
     }
 
