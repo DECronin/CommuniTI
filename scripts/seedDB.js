@@ -48,6 +48,8 @@ const seedTopics = [
     { title: "Constitutional Rights" }
 ];
 
+// create seeds for adminResources
+
 db.sequelize.sync().then(async () => {
     db.Topics.bulkCreate(seedTopics).then(data => {
         console.log(data.result + "TOPICS records inserted!\n");
