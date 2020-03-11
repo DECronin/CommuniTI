@@ -20,9 +20,7 @@ function ActiveThread ({loginData}) {
     function renderThreadArray (comments) {
         let temp = [];
         if (!comments.length){
-            temp.push(<><ul className="question-wrapper border border-primary" key="testing">
-            <h2>No Comments Currently Available</h2>
-        </ul></>)
+            window.location.href = "/#/newthread"
         } else  {
             let question = comments.shift();
             temp.push(<>
