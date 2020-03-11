@@ -10,19 +10,26 @@ module.exports = {
 
     // render list of threads from topicId{ where: { topic_id: req.params.id } }
     findThreads: function (req, res) {
-        db.ThreadTopics.findAll({where: {topic_id: req.params.id}}).then(TTdata => {
-            if(!TTdata.length){
-                res.json({msg: "no known assosiations yet"})
-            } else {
-                let ids = TTdata.map(x => x.thread_id)
-                db.Threads.findAll({where: {id: ids}}).then(data =>{
-                    res.json(data)
-                }).catch(err => {
-                    console.error(err);
-                    process.exit(1);
-                });
-            }
-        });
+        db.Topics.findAll({where: {id: req.params.id}}).then(topic => {
+            let topicTitle = topic[0].title;
+            db.ThreadTopics.findAll({where: {topic_id: req.params.id}}).then(TTdata => {
+                if(!TTdata.length){
+                    res.json({msg: "no known assosiations yet"})
+                } else {
+                    let ids = TTdata.map(x => x.thread_id)
+                    db.Threads.findAll({where: {id: ids}}).then(data =>{
+                        let sending = {
+                            data: data,
+                            topicTitle: topicTitle
+                        }
+                        res.json(sending)
+                    }).catch(err => {
+                        console.error(err);
+                        process.exit(1);
+                    });
+                }
+            });
+        })
     },
 
     // post new thread
@@ -157,7 +164,6 @@ module.exports = {
     findUser: function (req, res) {
         let key = req.params.key;
         let value = req.params.value;
-        console.log(`----------\nkey:: ${key}\nvalue:: ${value}\n--------`)
         db.Users
             .findAll({where: {[key]: value}})
             .then(dbModel => res.json(dbModel))

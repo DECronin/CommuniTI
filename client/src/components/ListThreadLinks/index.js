@@ -6,16 +6,17 @@ import API from '../../utils/API';
 function ListThreadLinks({loginData}) {
     let topicID = window.location.href.split("/").pop();
     const [threadList, setThread] = useState({
-        data: []
+        data: [], 
+        title: ''
     })
 
     function renderThreadLinks(){
         let temp = [];
         API.findThreads(topicID).then(result => {
-            if (!result.data.length){
+            if (!result.data.data.length){
                 temp.push(<ul className="thread-link" key="new-thread-nav"><Link to="/newthread">Start a New Thread</Link></ul>)
             } else {
-                let middle = result.data;
+                let middle = result.data.data;
                 middle.forEach(el => {
                     // sort by popularity vs date?
                     // fill in more data (ie: ^)
@@ -23,7 +24,8 @@ function ListThreadLinks({loginData}) {
                 });
             }
             setThread({
-                data: temp
+                data: temp,
+                title: result.data.topicTitle
             })
         })
     }
@@ -41,9 +43,9 @@ function ListThreadLinks({loginData}) {
     return (
         <>
             <div>
-                <header> ListThreadLinks </header>
-                    <ul>{threadList.data}</ul>
-                    {renderForm(loginData.loggedIn)}
+                <h2 className="row col-12 flex justify-content-center">{threadList.title}</h2>
+                <ul className="row col-12">{threadList.data}</ul>
+                {renderForm(loginData.loggedIn)}
             </div>
         </>)
 }
