@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 
-function TopicsList({loginData}){
+function TopicsList(){
     const [topicsData, setTopics] = useState({
         displayTopicsNav: []
     })
