@@ -62,7 +62,11 @@ function CommentForm({loginData, thread_id}) {
                 title: inputs.title,
                 stance: inputs.stance,
                 comment: inputs.comment
-            }).then(result => console.log("\n----------\napi - new Comment\n...\n" + JSON.stringify(result)));
+            }).then(result => {
+                console.log(JSON.stringify(result))
+                // window.location.href = window.location.href
+                // find a way to reload page without buggs
+            });
         } else {
             if (inputs.title === '') alert("Please Provide a Title for this Comment.")
             if (inputs.comment === '') alert("Please Provide Context to this Comment.")
