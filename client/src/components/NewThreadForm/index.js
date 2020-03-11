@@ -40,9 +40,7 @@ function NewThreadForm({loginData}) {
     }
 
     function validate(data){
-        // title, min 1 topic, body && data.topics.length >= 1
-        console.log('thread form grab' + JSON.stringify(data));
-        return (data.title !== '' && data.summary !== '') ? true : false
+        return (data.title === '' || data.summary === '' || !data.topics.length) ? false : true
     }
 
     function submitThread(e){
