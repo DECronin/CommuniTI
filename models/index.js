@@ -41,21 +41,9 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// db associations
+// db associations have been manually created
 
-// db.Threads.hasMany(db.Commments, {foreignKey: "thread_id"})
-// db.Comments.hasOne(db.Threads);
-
-// db.Topics.belongsToMany( db.Threads, {through: db.ThreadTopics});
-// db.Threads.belongsToMany(db.Topics, {through: db.ThreadTopics});
-
-
-// db.Users.hasMany(db.Comments, {foreignKey: "user_id"});
-// db.Commments.hasOne(db.User);
-
-// db.Commments.hasMany(db.Resources, {through: db.CommentResources})
-// db.Resources.hasMany(db.Comments, {through: db.CommentResources});
-
+// this table will be for storing login history in FuterDev
 // db.Users.hasMany(db.Session);
 // db.Session.hasOne(db.Users, {foreignKey: "user_id"});
 
