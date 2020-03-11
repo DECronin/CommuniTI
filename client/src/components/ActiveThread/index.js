@@ -1,43 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import CommentForm from '../CommentForm';
 import API from '../../utils/API';
+import CommentResource from '../CommentResource';
 
 function ActiveThread ({loginData}) {
     const [displayComments, setDisplay] = useState({
-        list: []
+        list: [],
+        indexingComments: 0
     })
     const thread_id = window.location.href.split("/").pop();
 
     // API Call to fina all comments for this thread-id
     useEffect(() => {
-        console.log("thread ID:: " + thread_id);
         API.findComments(thread_id).then(result => {
-            setDisplay({list: renderThreadArray(result.data)})
+            setDisplay({...displayComments, list: renderThreadArray(result.data)})
         })
-    }, [thread_id])
+    }, [thread_id, displayComments.indexingComments])
     
     function renderThreadArray (comments) {
         let temp = [];
         if (!comments.length){
             temp.push(<><ul className="question-wrapper border border-primary" key="testing">
-            <div className="row question-header">
-                <div className="username col-10">title</div>
-                <div className="stance col-2">3</div>
-            </div>
-            <div className="question-body row">
-                <p>summary</p>
-            </div>
-            <div className="question-footer row">
-                <div className="author col-7">author</div>
-                <div className="updated-date col-4">data</div>
-                {/* / if user === logedin user then "edit or delete" button / */}
-                {/* <button className="report-button">Report</button> */}
-            </div>
-            <div className="question-resources row">
-                <ul key="res-1">
-                    <li key="1">Populate Resources</li>
-                </ul>
-            </div><br></br>
+            <h2>No Comments Currently Available</h2>
         </ul></>)
         } else  {
             let question = comments.shift();
@@ -58,7 +42,7 @@ function ActiveThread ({loginData}) {
                     </div>
                     <div className="question-resources row">
                         <ul key={`res-${question.id}`}>
-                            <li key="1">Populate Resources</li>
+                            <CommentResource id={question.id} />
                         </ul>
                     </div><br></br>
                 </ul></>);
@@ -80,7 +64,7 @@ function ActiveThread ({loginData}) {
                         </div>
                         <div className="comment-resources row">
                             <ul key={`res-${el.id}`}>
-                                <li key={`res-${el.id}`}>Populate Resources</li>
+                                <CommentResource id={el.id} />
                             </ul>
                         </div><br></br>
                     </ul>   
@@ -92,7 +76,7 @@ function ActiveThread ({loginData}) {
 
     function renderForm(status){
         return(
-            status ? <CommentForm loginData={loginData} thread_id={thread_id} /> : ''
+            status ? <CommentForm loginData={loginData} thread_id={thread_id} setDisplay={setDisplay} displayComments={displayComments} /> : ''
         )
     }
 
