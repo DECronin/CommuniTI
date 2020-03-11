@@ -3,7 +3,7 @@ import NewResourceForm from '../NewResourceForm';
 import API from '../../utils/API';
 import $ from 'jquery';
 
-function CommentForm({loginData, thread_id}) {
+function CommentForm({loginData, thread_id, setDisplay, displayComments}) {
     const [formData, setForm] = useState({
         resourceIndex: 0,
         thread_id: thread_id,
@@ -64,8 +64,8 @@ function CommentForm({loginData, thread_id}) {
                 comment: inputs.comment
             }).then(result => {
                 console.log(JSON.stringify(result))
-                // window.location.href = window.location.href
-                // find a way to reload page without buggs
+                setDisplay({...displayComments, indexingComments: displayComments.indexingComments++})
+                window.location.reload()
             });
         } else {
             if (inputs.title === '') alert("Please Provide a Title for this Comment.")
