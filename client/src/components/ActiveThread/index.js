@@ -4,46 +4,58 @@ import API from '../../utils/API';
 import CommentResource from '../CommentResource';
 
 function ActiveThread ({loginData}) {
+    
     const [displayComments, setDisplay] = useState({
         list: [],
+        question: [],
         indexingComments: 0
     })
     const thread_id = window.location.href.split("/").pop();
-
     // API Call to fina all comments for this thread-id
     useEffect(() => {
-        API.findComments(thread_id).then(result => {
-            setDisplay({...displayComments, list: renderThreadArray(result.data)})
-        })
+        apiCall()
     }, [thread_id, displayComments.indexingComments])
+
+    function apiCall(){
+        API.findThreads('singleThread', thread_id).then(thread => {
+            console.log("THEAD DATA\n" + JSON.stringify(thread.data[0]))
+            renderQuestion(thread.data[0])
+            API.findComments(thread_id).then(result => {
+                console.log(thread_id)
+                if (!result.data.length){
+                    console.log("no data?")
+                } else {
+                    setDisplay({...displayComments, list: renderThreadArray(result.data)})
+                }
+            })
+        })
+    }
+    function renderQuestion(thread){
+        setDisplay({...displayComments, question: <>
+            <ul className="comment-wrapper border border-success" key={thread.id.toString() || '1'}>
+                <div className="row comment-header">
+                    <div className="username col-10">{thread.title}</div>
+                    <div className="stance col-2">{thread.stance}</div>
+                </div>
+                <div className="comment-body row">
+                    <p>{thread.summary}</p>
+                </div>
+                <div className="comment-footer row">
+                    <div className="author col-7">{thread.username}</div>
+                    <div className="updated-date col-4">{thread.updatedAt}</div>
+                    {/* / if user === logedin user then "edit or delete" button / */}
+                    {/* <button className="report-button">Report</button> */}
+                </div><br></br>
+            </ul>   
+
+        </>})
+    }
     
     function renderThreadArray (comments) {
         let temp = [];
         if (!comments.length){
             window.location.href = "/#/newthread"
         } else  {
-            let question = comments.shift();
-            temp.push(<>
-                <ul className="question-wrapper border border-primary" key={question.id.toString()}>
-                    <div className="row question-header">
-                        <div className="username col-10">{question.title}</div>
-                        <div className="stance col-2">{question.stance}</div>
-                    </div>
-                    <div className="question-body row">
-                        <p>{question.summary}</p>
-                    </div>
-                    <div className="question-footer row">
-                        <div className="author col-7">{question.author}</div>
-                        <div className="updated-date col-4">{question.updateDate}</div>
-                        {/* / if user === logedin user then "edit or delete" button / */}
-                        {/* <button className="report-button">Report</button> */}
-                    </div>
-                    <div className="question-resources row">
-                        <ul key={`res-${question.id}`}>
-                            <CommentResource id={question.id} />
-                        </ul>
-                    </div><br></br>
-                </ul></>);
             comments.forEach(el => {
                 temp.push(<>
                     <ul className="comment-wrapper border border-success" key={el.id.toString()}>
@@ -80,6 +92,7 @@ function ActiveThread ({loginData}) {
 
     return(<><ul>
         {/* first index as prominent */}
+        {displayComments.question}
         {displayComments.list}
         {renderForm(loginData.loggedIn)}
     </ul></>)
