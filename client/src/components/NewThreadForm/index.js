@@ -1,47 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import API from '../../utils/API';
 import $ from 'jquery';
-// import FocusContext from '../../utils/FocusContext';, { useState, useEffect }
+// import FocusContext from '../../utils/FocusContext';
 
 function NewThreadForm({loginData}) {
 
-    let topic_ids = []
-
+    const [display, setUp] = useState({
+        topics: []
+    })
+    
     function generateTopicOptions(){
-        let displayOptions = [];
         API.findTopics().then(result => {
+            let options = []
             result.data.forEach(topic => {
-                // displayOptions.push( <> <div className="custom-control custom-checkbox">
-                // <input type="checkbox" className="custom-control-input" id="customCheck1">
-                // <label className="custom-control-label" for="customCheck1">"TOPICS"</label>
-                // </div> </>)
-                displayOptions.push(topic.title)
+                console.log(topic.title)
+                options.push(<>
+                    <div className="form-check">
+                        <input className="form-check-input" name="topic" type="checkbox" value={topic.id} id={`checkbox-${topic.id}`} />
+                        <label className="form-check-label" for="defaultCheck1">
+                        {topic.title}
+                        </label>
+                    </div>
+                </>)
+                // options.push(topic.title)
             });
+            setUp({topics: options})
         }) 
-
-        return displayOptions
     }
 
     function validate(data){
-        // title, min 1 topic, body
-        return (data.title !== '' && data.summary !== '' && data.topics.length >= 1) ? true : false
+        // title, min 1 topic, body && data.topics.length >= 1
+        console.log('thread form grab' + JSON.stringify(data));
+        return (data.title !== '' && data.summary !== '') ? true : false
     }
 
     function submitThread(e){
+        e.preventDefault();
         let inputs = {
             title: $("#thread-title").val(),
             stance: $("#thread-stance").val(),
             summary: $("#thread-body").val(),
             user_id: loginData.id,
-            topics: topic_ids
+            topicIDs: []
         }
+        $.each($("input[name='topic']:checked"), function(){
+            inputs.topicIDs.push($(this).val());
+        });
         if (validate(inputs)){
-            API.newThread(inputs).then()
+            API.newThread(inputs).then(result => {
+                // find a way to reload page without buggs
+                console.log(JSON.stringify(result))
+            })
         } else {
             alert("please privide more data")
         }
         e.preventDefault();
     }
+
+    useEffect(() => {
+        generateTopicOptions()
+    }, [])
 
     return (<ul className="form-wrapper border border-warning" key="new">
         <form>
@@ -62,7 +80,7 @@ function NewThreadForm({loginData}) {
             <div className="form-row">
                 <textarea className="form-group col-12" rows="4" placeholder="Further Context..." name="thread-body" id="thread-body"></textarea>
             </div>
-            {generateTopicOptions()}
+            <div>{display.topics}</div>
         <button onClick={e => submitThread(e)}>Submit</button>
         </form>
     </ul>)
