@@ -72,7 +72,7 @@ function NewThreadForm({loginData}) {
         generateTopicOptions()
     }, [])
 
-    return (<ul className="form-wrapper border border-warning" key="new">
+    return (<ul className="form-wrapper" key="new">
         <form>
             <h5>New Thread</h5>
             <div className="form-row">

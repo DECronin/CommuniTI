@@ -24,7 +24,7 @@ function TopicsList({loginData}){
                 let topics = result.data.sort((a, b) => alphabeticalSort(a.title, b.title));
                 topics.forEach(li => {
                     temp.push(
-                    <ul className="topic-nav" key={li.id.toString()}>
+                    <ul className="topic-nav row col-12" key={li.id.toString()}>
                         <Link
                             to={`/topic/${li.id}`}
                             className={window.location.pathname === `/topic/${li.id}` ? "nav-link active" : "nav-link"}>
@@ -42,11 +42,12 @@ function TopicsList({loginData}){
 
     return (<>
         <div className="col-left col-2">
+            <div className="row col-12 flex justify-content-center">
             {loginData.loggedIn ? <button><Link to="/newthread">New Thread</Link></button> : ''}
-            <header>Topics:</header>
+            <h4 className="row col-12 flex justify-content-center">Topics:</h4>
             <ul>
                 {topicsData.displayTopicsNav}
-            </ul>
+            </ul></div>
         </div>
     </>)
 }

@@ -31,7 +31,7 @@ function ActiveThread ({loginData}) {
     }
     function renderQuestion(thread){
         setDisplay({...displayComments, question: <>
-            <ul className="comment-wrapper border border-success" key={thread.id.toString() || '1'}>
+            <ul className="comment-wrapper" key={thread.id.toString() || '1'}>
                 <div className="row comment-header">
                     <div className="username col-10">{thread.title}</div>
                     <div className="stance col-2">{thread.stance}</div>
@@ -57,7 +57,7 @@ function ActiveThread ({loginData}) {
         } else  {
             comments.forEach(el => {
                 temp.push(<>
-                    <ul className="comment-wrapper border border-success" key={el.id.toString()}>
+                    <ul className="comment-wrapper" key={el.id.toString()}>
                         <div className="row comment-header">
                             <div className="username col-10">{el.title}</div>
                             <div className="stance col-2">{el.stance}</div>

@@ -25,8 +25,28 @@ button{
   background-color: rgba(255, 238, 191, 0.85);
   border: 4px outset rgb(243, 196, 157);
   color: darkblue;
-  margin: 20px;
+  margin: 10px;
+  font-weight: 600;
 }
 a{
   color: darkblue;
+  font-weight: 600;
+}
+
+.col-left{
+  align-items: center;
+  height: fit-content;
+  padding: 10px;
+  margin: 5px;
+}
+
+.form-wrapper{
+  border: rgb(177, 221, 102) outset 3px !important;
+  padding: 10px;
+  background-color: rgba(173, 209, 100, 0.5);
+}
+
+#username, 
+#password{
+  margin: 10px;
 }

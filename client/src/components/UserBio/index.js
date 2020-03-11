@@ -27,8 +27,8 @@ function UserBio({ loginData }) {
                         "Unreliable Narrator: Definition & Examples."
                         Study.com, 22 July 2015,
                         Instructor: Suzanne Sweat
-                        <a href="https://study.com/academy/lesson/unreliable-narrator-definition-examples.html">https://study.com/academy/lesson/unreliable-narrator-definition-examples.html</a>
-                        <a href="https://en.wikipedia.org/wiki/Unreliable_narrator">https://en.wikipedia.org/wiki/Unreliable_narrator</a>
+                        <a className="row col-12 flex justify-content-center" href="https://study.com/academy/lesson/unreliable-narrator-definition-examples.html">https://study.com/academy/lesson/unreliable-narrator-definition-examples.html</a>
+                        <a className="row col-12 flex justify-content-center" href="https://en.wikipedia.org/wiki/Unreliable_narrator">https://en.wikipedia.org/wiki/Unreliable_narrator</a>
                         <span className="col-2"></span>
                     </p>
                 </div>

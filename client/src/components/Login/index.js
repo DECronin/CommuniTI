@@ -28,12 +28,15 @@ function LoginForm({updateLogin}){
         e.preventDefault()
     }
     return (
-    <form className="form-wrapper border border-primary">
-            <input name="username" id="username" placeholder="username"></input>
-            <input name="password" id="password" placeholder="password"></input>
-            <Link onClick={(e) => formObject(e, updateLogin)} to="/">Login</Link> 
-            <Link to="/newuser">New User</Link> 
-            {/* / if source == userComment send to state array for display purposes else send to recommendationPend / */}
+    <form className="form-wrapper row col-12">
+        <span className="col-4"></span>
+            <input className="col-4" name="username" id="username" placeholder="username"></input>
+        <span className="col-4"></span>
+            <input className="col-4" name="password" id="password" placeholder="password"></input>
+        <span className="row col-12 flex justify-content-center">
+            <button><Link onClick={(e) => formObject(e, updateLogin)} to="/">Login</Link> </button>
+            <button><Link to="/newuser">New User</Link></button> 
+        </span>
     </form> )
 }
 

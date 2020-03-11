@@ -17,7 +17,8 @@ function Header({loginData}){
             <Nav loginData={loginData} />
             <header className="col-8 d-flex justify-content-center"><h1>Communication Trumps Ignorance</h1></header>
             <div className="col-2">
-                <Link id="resources-link" to="/resources">resources</Link>{loginData.loggedIn ? 
+                <button><Link id="resources-link" to="/resources">resources</Link></button>
+                {loginData.loggedIn ? 
                 <button id="user-logout" 
                     onClick={() => logOut()}><FaSignOutAlt /> Logout
                 </button> : ''}
