@@ -10,7 +10,8 @@ function ResourcesList({loginData}) {
     function renderResources(){
         let temp = [];
         // only pull "approved" status
-        API.findResources("approved").then(result => {
+        API.findResources("status", "pending").then(result => {
+            // API.findResources("status", "approved").then(result => {
             result.data.forEach(el => {
                 temp.push(<li>{JSON.stringify(el)}</li> )
             });
