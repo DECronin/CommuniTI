@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         email: {
             type: DataTypes.STRING,
-            unique: true,
+            // unique: true,
             // allowNull: false,
             // validate: {
             //     isEmail: true
@@ -31,15 +31,16 @@ module.exports = (sequelize, DataTypes) => {
             unique: false,
             allowNull: false
         },
-        phone: {
-            type: DataTypes.STRING,
-            unique: true,
-            allowNull: true,
-            validate: {
-                len: [9,11],
-                isNumeric: true
-            }
-        },
+        // phone: {
+        //     type: DataTypes.STRING,
+        //     unique: false
+        //     // unique: true,
+        //     // allowNull: true,
+        //     // validate: {
+        //     //     len: [9,11],
+        //     //     isNumeric: true
+        //     // }
+        // },
         accountStatus: {
             type: DataTypes.STRING,
             unique: false,
