@@ -28,9 +28,7 @@ function Dashboard() {
         setLogin(data);
     }
 
-    useEffect(() => {
-        console.log(`Local storage::{\nloggedIn: ${localStorage.loggedIn || "x"}\nid: ${localStorage.id || "x"}\nusername:: ${localStorage.username} }`);
-    }, [loginData])
+    useEffect(() => {}, [loginData])
 
     return (<>
         <Router><div className="container-fluid">
