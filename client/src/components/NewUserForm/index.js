@@ -94,22 +94,27 @@ function NewUserForm({updateLogin}) {
             }}
     }, [formFlow.continue])
     
-    return (<form className="form-wrapper border border-primary">
-            <h6>New User</h6>
+    return (<form className="form-wrapper">
+            <h5 className="row flex justify-content-center">New User</h5>
             <div className="form-row form-group">
                 <label className="col-1">Name:</label>
                 <input className="col-5" name="firstname" id="new-firstname" placeholder="First"></input>
+                <label className="col-1"></label>
                 <input className="col-5" name="lastname" id="new-lastname" placeholder="Last"></input>
             </div>
             <div className="form-row form-group">
-                <input className="col-6" name="username" id="new-username" placeholder="username"></input>
-                <input className="col-6" name="password" id="new-password" placeholder="password"></input>
+                <label className="col-1"></label>
+                <input className="col-5" name="username" id="new-username" placeholder="username"></input>
+                <label className="col-1"></label>
+                <input className="col-5" name="password" id="new-password" placeholder="password"></input>
             </div>
             {/* <input className="form-row" name="phone" id="new-phone" placeholder="phone"></input> */}
             {/* <input>birthday</input> */}
             <div className="form-row">
-                <input className="col-9" name="email" id="new-email" placeholder="email"></input>
-                <button className="col-2" onClick={(e) => formObject(e)}>Join</button>
+                <label className="col-1"></label>
+                <input className="col-8" name="email" id="new-email" placeholder="email"></input>
+                <label className="col-1"></label>
+                <button className="col-1" onClick={(e) => formObject(e)}>Join</button>
             </div>
             
     </form>)

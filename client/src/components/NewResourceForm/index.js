@@ -43,16 +43,18 @@ function NewResourceForm({ source, formData, setForm }) {
         }
         e.preventDefault()
     }
-    return (<ul className="form-wrapper border border-warning" key="next">
+    return (<ul className="form-wrapper" key="next">
                 <h6>New Resource</h6>
             <div className="form-row">
                 <div className="form-group col-9">
                     <input className="form-row form-group col-12" name="res-title" id="res-title" placeholder="Resource Name or Title" required={true}></input>
                 </div>
-                <div className="form-group col-3">
-                        <label className="form-check-label form-group col-2" htmlFor="stance-range">Pro</label>
+                <div className="form-group col-3 rows">
+                        <label className="col-12 d-flex justify-content-center">Overall View | Side:</label>
+                        <label className="form-check-label form-group col-1" htmlFor="stance-range">Pro</label>
+                        <span className="col-1"></span>
                         <input type="range" className="form-group col-6" id="res-stance" min="1" max="5" defaultValue="3" />
-                        <label className="form-check-label form-group col-2" htmlFor="stance-range">Con</label>
+                        <label className="form-check-label form-group col-1" htmlFor="stance-range">Con</label>
                 </div>
             </div>
             <div className="form-row">

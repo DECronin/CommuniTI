@@ -42,7 +42,7 @@ a{
 
 .form-wrapper{
   border: rgb(177, 221, 102) outset 3px !important;
-  padding: 10px;
+  padding: 20px !important;
   margin: 5px;
   background-color: rgba(173, 209, 100, 0.5);
 }
