@@ -21,7 +21,7 @@ function ActiveThread ({loginData}) {
             API.findComments(thread_id).then(result => {
                 console.log(thread_id)
                 if (!result.data.length){
-                    console.log("no data?")
+                    setDisplay({...displayComments, list: [], question: renderQuestion(thread.data[0])})
                 } else {
                     setDisplay({...displayComments, list: renderThreadArray(result.data), question: renderQuestion(thread.data[0])})
                 }
@@ -29,25 +29,31 @@ function ActiveThread ({loginData}) {
         })
     }
     function renderQuestion(thread){
-        let question = [<>
-            <ul className="comment-wrapper" key={thread.id.toString() || '1'}>
-                <div className="row comment-header">
-                    <div className="username col-10">{thread.title}</div>
-                    <div className="stance col-2">{thread.stance}</div>
-                </div>
-                <div className="comment-body row">
-                    <p>{thread.summary}</p>
-                </div>
-                <div className="comment-footer row">
-                    <div className="author col-7">@ {thread.username}</div>
-                    <div className="updated-date col-4">{thread.updatedAt}</div>
-                    {/* / if user === logedin user then "edit or delete" button / */}
-                    {/* <button className="report-button">Report</button> */}
-                </div><br></br>
-            </ul>   
+        console.log(JSON.stringify(thread))
+        if (thread){
+            let question = [<>
+                <ul className="question-wrapper row" key={thread.id.toString() || '1'}>
+                    <span className="col-1"></span>
+                    <div className="col-10">
+                    <div className="row question-header">
+                        <h5 className="username col-10">{thread.title}</h5>
+                        <div className="stance col-2">{thread.stance}</div>
+                    </div>
+                    <div className="question-body row">
+                        <p>{thread.summary}</p>
+                    </div>
+                    <div className="question-footer row">
+                        <div className="author col-7">@ {thread.username}</div>
+                        <div className="updated-date col-4">{thread.updatedAt}</div>
+                        {/* / if user === logedin user then "edit or delete" button / */}
+                        {/* <button className="report-button">Report</button> */}
+                    </div></div>
+                    <span className="col-1"></span>
+                </ul>   
 
-        </>]
-        return question
+            </>]
+            return question
+        }
     }
     
     function renderThreadArray (comments) {
