@@ -39,7 +39,7 @@ function ActiveThread ({loginData}) {
                     <p>{thread.summary}</p>
                 </div>
                 <div className="comment-footer row">
-                    <div className="author col-7">{thread.username}</div>
+                    <div className="author col-7">@ {thread.username}</div>
                     <div className="updated-date col-4">{thread.updatedAt}</div>
                     {/* / if user === logedin user then "edit or delete" button / */}
                     {/* <button className="report-button">Report</button> */}
