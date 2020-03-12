@@ -20,7 +20,9 @@ function ListThreadLinks({loginData}) {
                 middle.forEach(el => {
                     // sort by popularity vs date?
                     // fill in more data (ie: ^)
-                    temp.push(<ul className="thread-link row col-12" key={el.id.toString()}><Link to={$`{window.location.pathname}thread/${el.id}`}>{el.title}</Link></ul> )
+                    temp.push(<ul className="thread-link row col-12" key={el.id.toString()}>
+                        <Link to={`${window.location.pathname}thread/${el.id}`}>{el.title}</Link>
+                        </ul> )
                 });
             }
             setThread({
