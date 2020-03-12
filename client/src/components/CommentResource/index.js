@@ -13,7 +13,7 @@ function CommentResource({id}){
         API.findResources("comment_id", id).then(result => {
             // console.log(`api resources result::\n${JSON.stringify(result)}`)
             for(let y = 0; y < result.data.length; y++){
-                temp.push(<li key={result.data[y].id.toString()}><Link to={result.data[y].url} target="_blank">{result.data[y].title}</Link></li>)
+                temp.push(<li key={result.data[y].id.toString()}><a href={result.data[y].url} target="_blank">{result.data[y].title}</a></li>)
             }
             setRes({rendering: temp})
         })
