@@ -14,15 +14,18 @@ module.exports = {
         let value = req.params.value;
         if(key === 'singleThread'){
             db.Threads.findAll({where: {id: value}}).then(data => {
-                res.send(data)
+                res.json(data)
             })
         } else {
         db.Topics.findAll({where: {id: value}}).then(topic => {
-            console.log(JSON.stringify(topic))
             let topicTitle = topic[0].title;
             db.ThreadTopics.findAll({where: {topic_id: value}}).then(TTdata => {
                 if(!TTdata.length){
-                    res.json({msg: "no known assosiations yet"})
+                    let sending = {
+                            msg: "no known associations yet",
+                            topicTitle: topicTitle
+                        }
+                        res.json(sending)
                 } else {
                     let ids = TTdata.map(x => x.thread_id)
                     db.Threads.findAll({where: {id: ids}}).then(data =>{

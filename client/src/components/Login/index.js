@@ -6,9 +6,7 @@ import $ from 'jquery';
 function LoginForm({updateLogin}){
     function validate(data, cb){
         localStorage.clear();
-        console.log(`sending data : ${JSON.stringify(data)}`)
         API.login(data).then((result) => {
-            console.log(JSON.stringify(result));
             localStorage.setItem('id', result.data.id);
             localStorage.setItem('loggedIn', 'true')
             localStorage.setItem('username', data.username)
