@@ -92,7 +92,7 @@ function NewThreadForm({loginData}) {
             <div className="form-row">
                 <textarea className="form-group col-12" rows="4" placeholder="Further Context..." name="thread-body" id="thread-body"></textarea>
             </div>
-            <div className="form-group-topics row"><label className="col-12">Topic(s):</label>{display.topics}</div>
+            <div className="form-group-topics row"><h6 className="col-12">Topic(s):</h6>{display.topics}</div>
         <button onClick={e => submitThread(e)}>Submit</button>
         </form>
     </ul>)
