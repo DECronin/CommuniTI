@@ -58,4 +58,15 @@ db.sequelize.sync().then(async () => {
             console.error(err);
             process.exit(1);
         });
+
+        db.Users.create({
+            username: 'Administration',
+            password: 'Enljjbv-egSW60hXgN2UUeLk-Cu.uSicLtuzg'
+        }, { individualHooks: true }).then(data => {
+            console.log(data.result + "ADMIN records inserted!\n");
+        })
+            .catch(err => {
+                console.error(err);
+                process.exit(1);
+            });
 }).catch(err => console.log(err))
