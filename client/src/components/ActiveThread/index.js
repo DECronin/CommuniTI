@@ -91,8 +91,8 @@ function ActiveThread ({loginData}) {
 
     return(<><ul>
         {/* first index as prominent */}
-        {displayComments.question}
-        {displayComments.list}
+        <div className="row col-12 thread-question">{displayComments.question}</div>
+        <div className="row col-12 comments-list">{displayComments.list}</div>
         {renderForm(loginData.loggedIn)}
     </ul></>)
 }
