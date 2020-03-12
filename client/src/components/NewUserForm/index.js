@@ -95,24 +95,27 @@ function NewUserForm({updateLogin}) {
     }, [formFlow.continue])
     
     return (<form className="form-wrapper">
-            <h5 className="row flex justify-content-center">New User</h5>
+            <div className="row flex justify-content-center">
+                <h5 className="col-10">New User</h5>
+                <p className="col-2"><i>* Required Fields</i></p>
+            </div>
             <div className="form-row form-group">
                 <label className="col-1">Name:</label>
-                <input className="col-5" name="firstname" id="new-firstname" placeholder="First"></input>
+                <input className="col-5" name="firstname" id="new-firstname" placeholder="* First"></input>
                 <label className="col-1"></label>
-                <input className="col-5" name="lastname" id="new-lastname" placeholder="Last"></input>
+                <input className="col-5" name="lastname" id="new-lastname" placeholder="* Last"></input>
             </div>
             <div className="form-row form-group">
                 <label className="col-1"></label>
-                <input className="col-5" name="username" id="new-username" placeholder="username"></input>
+                <input className="col-5" name="username" id="new-username" placeholder="* Username (Min. 7 Characters)"></input>
                 <label className="col-1"></label>
-                <input className="col-5" name="password" id="new-password" placeholder="password"></input>
+                <input className="col-5" name="password" id="new-password" placeholder="* Password (Min. 7 Characters)"></input>
             </div>
             {/* <input className="form-row" name="phone" id="new-phone" placeholder="phone"></input> */}
             {/* <input>birthday</input> */}
             <div className="form-row">
                 <label className="col-1"></label>
-                <input className="col-8" name="email" id="new-email" placeholder="email"></input>
+                <input className="col-8" name="email" id="new-email" placeholder="Em@il"></input>
                 <label className="col-1"></label>
                 <button className="col-1" onClick={(e) => formObject(e)}>Join</button>
             </div>
