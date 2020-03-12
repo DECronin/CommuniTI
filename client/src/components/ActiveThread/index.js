@@ -47,7 +47,7 @@ function ActiveThread ({loginData}) {
                         <div className="updated-date col-4">{thread.updatedAt}</div>
                         {/* / if user === logedin user then "edit or delete" button / */}
                         {/* <button className="report-button">Report</button> */}
-                    </div></div>
+                    </div></div><br></br>
                     <span className="col-1"></span>
                 </ul>   
 

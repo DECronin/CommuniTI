@@ -43,7 +43,12 @@ a{
 .form-wrapper{
   border: rgb(177, 221, 102) outset 3px !important;
   padding: 10px;
+  margin: 5px;
   background-color: rgba(173, 209, 100, 0.5);
+}
+
+form{
+  margin: 5px;
 }
 
 #username, 
@@ -57,4 +62,8 @@ a{
 
 .question-wrapper{
   font-size: 105%;
+  padding: 20px 0;
+  background-color: rgba(152, 251, 152, 0.3);
+  border: rgb(152, 251, 152) outset 5px;
+  margin: 10px;
 }
