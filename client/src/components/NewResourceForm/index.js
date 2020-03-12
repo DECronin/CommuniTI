@@ -44,10 +44,13 @@ function NewResourceForm({ source, formData, setForm }) {
         e.preventDefault()
     }
     return (<ul className="form-wrapper" key="next">
-                <h6>New Resource</h6>
+            <header className="row">
+                <h6 className="col-9">New Resource</h6>
+                <p className="col-3"><i>* Required Fields</i></p>
+            </header>
             <div className="form-row">
                 <div className="form-group col-9">
-                    <input className="form-row form-group col-12" name="res-title" id="res-title" placeholder="Resource Name or Title" required={true}></input>
+                    <input className="form-row form-group col-12" name="res-title" id="res-title" placeholder="* Resource Name or Title" required={true}></input>
                 </div>
                 <div className="form-group col-3 row resource-view">
                         <label className="col-12 d-flex justify-content-center">Overall View:</label>
@@ -60,7 +63,7 @@ function NewResourceForm({ source, formData, setForm }) {
             </div>
             <div className="form-row">
                 <div className="form-group col-4">
-                    <label>Category:</label>
+                    <label>Category: *</label>
                     <select className="form-control form-row form-group col-12" id="category" required={true}>
                         <option value="Legal Text">Legal Text</option>
                         <option value="Academic Text">Academic Text</option>
@@ -77,7 +80,7 @@ function NewResourceForm({ source, formData, setForm }) {
                     </div>
                 </div>
                 <div className="citation form-group col-8">
-                    <input className="form-row form-group col-11" id="res-url" placeholder="URL: (source or access to source // ie: Google Books)" required={true}></input>
+                    <input className="form-row form-group col-11" id="res-url" placeholder="* URL: (source or access to source // ie: Google Books)" required={true}></input>
                     <input className="form-row form-group col-11" id="res-authors" placeholder="Author(s) and/or Contributor(s)"></input>
                     <input className="form-row form-group col-11" id="res-publisher" placeholder="Publisher or Sponsor"></input>
                 </div>

@@ -77,10 +77,13 @@ function CommentForm({loginData, thread_id, setDisplay, displayComments}) {
 
     return (<ul className="form-wrapper" key="new">
         <form className="needs-validation" noValidate>
-            <h5>New Comment</h5>
+            <header className="row">
+                <h5 className="col-9">New Comment</h5>
+                <p className="col-3"><i>* Required Fields</i></p>
+            </header>
             <div className="form-row">
                 <div className="form-group col-9">
-                    <input className="form-row form-group col-12" name="comment-title" id="comment-title" placeholder="Title Statement" required={true}></input>
+                    <input className="form-row form-group col-12" name="comment-title" id="comment-title" placeholder="* Title Statement" required={true}></input>
                 </div>
                 <div className="form-group col-3">
                     <label className="form-row col-12 flex justify-content-center">View:</label>
@@ -95,7 +98,7 @@ function CommentForm({loginData, thread_id, setDisplay, displayComments}) {
                 </div>
             </div>
             <div className="form-row">
-                <textarea className="form-group col-12" rows="4" placeholder="Comment..." name="comment-body" id="comment-body" required={true}></textarea>
+                <textarea className="form-group col-12" rows="4" placeholder="* Comment..." name="comment-body" id="comment-body" required={true}></textarea>
             </div>
             <div className="resource-wrapper">
                 <ul>

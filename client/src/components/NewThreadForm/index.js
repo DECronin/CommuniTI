@@ -73,11 +73,13 @@ function NewThreadForm({loginData}) {
     }, [])
 
     return (<ul className="form-wrapper" key="new">
-        <form>
-            <h5>New Thread</h5>
+        <form><header className="row">
+                <h5 className="col-9">New Thread</h5>
+                <p className="col-3"><i>* Required Fields</i></p>
+            </header>
             <div className="form-row">
                 <div className="form-group col-9">
-                    <input className="form-row form-group col-12" name="thread-title" id="thread-title" placeholder="Question or Statement Title"></input>
+                    <input className="form-row form-group col-12" name="thread-title" id="thread-title" placeholder="* Question or Statement Title"></input>
                 </div>
                 <div className="form-group col-3">
                     <div className="form-row">
@@ -90,10 +92,16 @@ function NewThreadForm({loginData}) {
                 </div>
             </div>
             <div className="form-row">
-                <textarea className="form-group col-12" rows="4" placeholder="Further Context..." name="thread-body" id="thread-body"></textarea>
+                <textarea className="form-group col-12" rows="4" placeholder="* Further Context..." name="thread-body" id="thread-body"></textarea>
             </div>
-            <div className="form-group-topics row"><h6 className="col-12">Topic(s):</h6>{display.topics}</div>
-        <button onClick={e => submitThread(e)}>Submit</button>
+            <div className="form-group-topics row">
+                <h6 className="col-9 d-flex justify-content-center">Topic(s)</h6>
+                <p className="col-3"><i>* (Minimum: 1)</i></p>
+                {display.topics}
+            </div>
+            <div className="form-row col-12 d-flex justify-content-center">
+                <button onClick={e => submitThread(e)}>Submit</button>
+            </div>
         </form>
     </ul>)
 }
