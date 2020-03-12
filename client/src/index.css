@@ -52,5 +52,9 @@ a{
 }
 
 .active-thread{
-  padding: 15px;
+  padding: 20px;
+}
+
+.question-wrapper{
+  font-size: 105%;
 }
