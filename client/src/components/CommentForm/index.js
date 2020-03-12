@@ -75,7 +75,7 @@ function CommentForm({loginData, thread_id, setDisplay, displayComments}) {
         e.preventDefault();
     }
 
-    return (<ul className="form-wrapper border border-warning" key="new">
+    return (<ul className="form-wrapper" key="new">
         <form className="needs-validation" noValidate>
             <h5>New Comment</h5>
             <div className="form-row">
@@ -83,11 +83,14 @@ function CommentForm({loginData, thread_id, setDisplay, displayComments}) {
                     <input className="form-row form-group col-12" name="comment-title" id="comment-title" placeholder="Title Statement" required={true}></input>
                 </div>
                 <div className="form-group col-3">
-                    <label className="form-row col-12">View:</label>
+                    <label className="form-row col-12 flex justify-content-center">View:</label>
                     <div className="form-row">
-                        <label className="form-check-label form-group col-2" htmlFor="stance-range">Pro</label>
+                        <span className="col-1"></span>
+                        <label className="form-check-label form-group col-1" htmlFor="stance-range">Pro</label>
+                        <span className="col-1"></span>
                         <input type="range" className="form-group col-6" id="comment-stance" min="1" max="5" defaultValue="3" />
-                        <label className="form-check-label form-group col-2" htmlFor="stance-range">Con</label>
+                        <label className="form-check-label form-group col-1" htmlFor="stance-range">Con</label>
+                        <span className="col-1"></span>
                     </div>
                 </div>
             </div>

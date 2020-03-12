@@ -67,3 +67,8 @@ form{
   border: rgb(152, 251, 152) outset 5px;
   margin: 10px;
 }
+
+.resource-view{
+  padding-right: 15px;
+  padding-left: -5px;
+}

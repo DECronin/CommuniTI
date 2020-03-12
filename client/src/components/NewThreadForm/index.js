@@ -80,8 +80,9 @@ function NewThreadForm({loginData}) {
                     <input className="form-row form-group col-12" name="thread-title" id="thread-title" placeholder="Question or Statement Title"></input>
                 </div>
                 <div className="form-group col-3">
-                    <label className="form-row col-12">Starting View:</label>
                     <div className="form-row">
+                    <label className="form-row col-10 flex justify-content-center">Starting View:</label>
+                    <span className="col-2"></span>
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Pro</label>
                         <input type="range" className="form-group col-6" id="thread-stance" min="1" max="5" defaultValue="3" />
                         <label className="form-check-label form-group col-2" htmlFor="stance-range">Con</label>
