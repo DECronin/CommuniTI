@@ -31,6 +31,11 @@ function NewResourceForm({ source, formData, setForm }) {
             } else {
                 let middleData = formData.dataResourceInputs || [];
                 middleData.push(resData);
+
+                $.each($("input"), function(){
+                    $(this).val('');
+                });
+
                 setForm({
                     ...formData,
                     dataResourceInputs: middleData
