@@ -17,8 +17,8 @@ function CenterFocus({loginData, updateLogin}){
         <Route exact path="/" render={() => loginData.loggedIn ? <UserBio loginData={loginData} /> : <Login updateLogin={updateLogin} />} />
         <Route path="/thread/:id" render={() => <ActiveThread loginData={loginData} />} />
         <Route path="/topic/:id" render={() => <ListThreadLinks loginData={loginData} />} />
-        <Route exact path="/newresource" render={() => <NewResourceForm source="reccomendation" />} />
-        <Route exact path="/newthread" render={() => <NewThreadForm loginData={loginData} />} />
+        <Route exact path="/newresource" render={() => loginData.loggedIn ? <NewResourceForm source="reccomendation" /> : <Login updateLogin={updateLogin} />} />
+        <Route exact path="/newthread" render={() => loginData.loggedIn ? <NewThreadForm loginData={loginData} /> : <Login updateLogin={updateLogin} />} />
         <Route exact path="/newuser" render={() => <NewUserForm updateLogin={updateLogin} />} />
         <Route exact path="/resources" render={() => <ResourcesList loginData={loginData} />} />
         <Route exact path="/termsofservice" render={() => <TOS loginData={loginData} />} />
