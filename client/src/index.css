@@ -50,3 +50,7 @@ a{
 #password{
   margin: 10px;
 }
+
+.active-thread{
+  padding: 15px;
+}
