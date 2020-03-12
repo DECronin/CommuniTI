@@ -22,7 +22,7 @@ Communication Trumps Ignorance.
 
 > (Topics -> Threads -> Comments)
 
-> New Forms for Each
+> New Forms for Each ((Only Visible to Logged-In Users))
 
 > New User Form
 
