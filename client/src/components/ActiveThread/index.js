@@ -18,19 +18,18 @@ function ActiveThread ({loginData}) {
 
     function apiCall(){
         API.findThreads('singleThread', thread_id).then(thread => {
-            renderQuestion(thread.data[0])
             API.findComments(thread_id).then(result => {
                 console.log(thread_id)
                 if (!result.data.length){
                     console.log("no data?")
                 } else {
-                    setDisplay({...displayComments, list: renderThreadArray(result.data)})
+                    setDisplay({...displayComments, list: renderThreadArray(result.data), question: renderQuestion(thread.data[0])})
                 }
             })
         })
     }
     function renderQuestion(thread){
-        setDisplay({...displayComments, question: <>
+        let question = [<>
             <ul className="comment-wrapper" key={thread.id.toString() || '1'}>
                 <div className="row comment-header">
                     <div className="username col-10">{thread.title}</div>
@@ -47,11 +46,12 @@ function ActiveThread ({loginData}) {
                 </div><br></br>
             </ul>   
 
-        </>})
+        </>]
+        return question
     }
     
     function renderThreadArray (comments) {
-        let temp = displayComments.question;
+        let temp = [];
         if (!comments.length){
             window.location.href = "/#/newthread"
         } else  {
