@@ -38,7 +38,7 @@ function TopicsList({loginData}){
 
     useEffect(() => {
         generateTopicsList()
-    })
+    }, [])
 
     return (<>
         <div className="col-left col-2">
