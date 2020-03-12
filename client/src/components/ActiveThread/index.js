@@ -51,7 +51,7 @@ function ActiveThread ({loginData}) {
     }
     
     function renderThreadArray (comments) {
-        let temp = [];
+        let temp = displayComments.question;
         if (!comments.length){
             window.location.href = "/#/newthread"
         } else  {
@@ -91,8 +91,8 @@ function ActiveThread ({loginData}) {
 
     return(<><ul className="active-thread">
         {/* first index as prominent */}
-        <div className="row col-12 thread-question">{displayComments.question}</div>
-        <div className="row col-12 comments-list">{displayComments.list}</div>
+        {displayComments.question}
+        {displayComments.list}
         {renderForm(loginData.loggedIn)}
     </ul></>)
 }
