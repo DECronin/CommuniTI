@@ -19,7 +19,6 @@ function ActiveThread ({loginData}) {
     function apiCall(){
         API.findThreads('singleThread', thread_id).then(thread => {
             API.findComments(thread_id).then(result => {
-                console.log(thread_id)
                 if (!result.data.length){
                     setDisplay({...displayComments, list: [], question: renderQuestion(thread.data[0])})
                 } else {
@@ -29,7 +28,6 @@ function ActiveThread ({loginData}) {
         })
     }
     function renderQuestion(thread){
-        console.log(JSON.stringify(thread))
         if (thread){
             let question = [<>
                 <ul className="question-wrapper row" key={thread.id.toString() || '1'}>
